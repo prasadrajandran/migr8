@@ -1,10 +1,10 @@
 const logger = require('../helpers/logger');
-const findMaxLength = require('../helpers/find_max_length');
+const findMaxStrLength = require('../helpers/find_max_length');
 
 const list = async (migr8) => {
   const migrations = await migr8.getMigrations();
   const executedMigrations = await migr8.getExecutedMigrations();
-  const padding = findMaxLength(migrations) + 2;
+  const padding = findMaxStrLength(migrations) + 2;
 
   for (const migration of await migr8.getMigrations()) {
     const executed = executedMigrations.find(({ name }) => migration === name);

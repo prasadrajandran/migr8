@@ -1,5 +1,5 @@
 const logger = require('../helpers/logger');
-const findMaxStrLength = require('../helpers/find_max_length');
+const findMaxStrLength = require('../helpers/find_max_str_length');
 
 const list = async (migr8) => {
   const migrations = await migr8.getMigrations();

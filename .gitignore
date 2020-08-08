@@ -1,0 +1,4 @@
+node_modules
+migrations
+.migr8.registry.json
+.migr8.conf.js

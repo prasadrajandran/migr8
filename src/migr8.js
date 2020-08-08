@@ -2,12 +2,12 @@ const fs = require('fs');
 const path = require('path');
 
 /**
- * @callback UpCallbackArg
+ * @callback UpArg
  * @returns {Promise<any>}
  */
 
 /**
- * @callback DownCallbackArg
+ * @callback DownArg
  * @returns {Promise<any>}
  */
 
@@ -18,9 +18,9 @@ const path = require('path');
  *     used for new migrations.
  * @property {string} registryFilename Filename of the registry file that is
  *     used to keep track of all executed migrations.
- * @property {UpCallbackArg=} upCallbackArg Callback that produces an argument
+ * @property {UpArg=} upArg Callback that produces an argument
  *     for migrations when they are being migrated.
- * @property {DownCallbackArg=} downCallbackArg Callback that produces an
+ * @property {DownArg=} downArg Callback that produces an
  *     argument for migrations when they are being rollbacked.
  */
 
@@ -62,8 +62,8 @@ class Migr8 {
     migrationsDir,
     templateFilename,
     registryFilename,
-    upCallbackArg = async () => {},
-    downCallbackArg = async () => {},
+    upArg = async () => {},
+    downArg = async () => {},
   }) {
     /**
      * File encoding for the migration files.
@@ -105,17 +105,17 @@ class Migr8 {
      * Callback that is executed to produce an argument that will be passed to
      * migrations when they are being migrated.
      *
-     * @type {UpCallbackArg}
+     * @type {UpArg}
      */
-    this.upCallbackArg = upCallbackArg;
+    this.upArg = upArg;
 
     /**
      * Callback that is executed to produce an argument that will be passed to
      * migrations when they are being rollbacked.
      *
-     * @type {DownCallbackArg}
+     * @type {DownArg}
      */
-    this.downCallbackArg = downCallbackArg;
+    this.downArg = downArg;
   }
 
   /**
@@ -156,7 +156,7 @@ class Migr8 {
       batch = executedMigrations[executedMigrations.length - 1].batch + 1;
     }
 
-    const arg = await this.upCallbackArg();
+    const arg = await this.upArg();
     const processedMigrations = [];
     const limit = num > 0 ? num : Infinity;
     let err = null;
@@ -209,7 +209,7 @@ class Migr8 {
       batch = executedMigrations[executedMigrations.length - 1].batch;
     }
 
-    const arg = await this.downCallbackArg();
+    const arg = await this.downArg();
     const processedMigrations = [];
     let err = null;
     let count = 0;
@@ -256,8 +256,10 @@ class Migr8 {
    *     filename.
    */
   async createFilename(migrationName) {
-    const timestamp = new Date().toISOString().replace(/[^\d]/g, '');
-
+    const timestamp = new Date()
+      .toISOString()
+      .replace(/[^\d]/g, '')
+      .substring(0, 14); // Remove milliseconds.
     return path.resolve(this.migrationsDir, `${timestamp}_${migrationName}.js`);
   }
 

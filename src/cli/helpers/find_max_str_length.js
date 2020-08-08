@@ -1,8 +1,8 @@
 const findMaxStrLength = (values) => {
-  return values.reduce(
-    (max, v) => (String(v).length > max ? v.length : max),
-    0,
-  );
+  return values.reduce((max, v) => {
+    const str = String(v);
+    return str.length > max ? str.length : max;
+  }, 0);
 };
 
 module.exports = findMaxStrLength;

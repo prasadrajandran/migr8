@@ -1,0 +1,35 @@
+{
+  "name": "migr8",
+  "version": "0.1.0",
+  "description": "Agnostic migration tool",
+  "main": "src/migr8.js",
+  "scripts": {
+    "eslint": "eslint **/*.js",
+    "prettier-fix": "prettier . --write",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prasadrajandran/migr8.git"
+  },
+  "author": "Prasad Rajandran",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/prasadrajandran/migr8/issues"
+  },
+  "homepage": "https://github.com/prasadrajandran/migr8#readme",
+  "devDependencies": {
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsdoc": "^30.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "prettier": "^2.0.5"
+  },
+  "bin": {
+    "migr8": "./src/cli.js"
+  }
+}

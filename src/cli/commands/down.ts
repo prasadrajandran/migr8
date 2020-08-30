@@ -1,7 +1,8 @@
-const logger = require('../helpers/logger');
-const findMaxStrLength = require('../helpers/find_max_str_length');
+import Migr8 from '../../migr8';
+import * as logger from '../helpers/logger';
+import findMaxStrLength from '../helpers/find_max_str_length';
 
-const down = async (migr8, num) => {
+const down = async (migr8: Migr8, num: number) => {
   const { migrations, err } = await migr8.down({ num });
   const padding = findMaxStrLength(migrations.map(({ batch }) => batch));
 
@@ -18,4 +19,4 @@ const down = async (migr8, num) => {
   return err || true;
 };
 
-module.exports = down;
+export default down;

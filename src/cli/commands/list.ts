@@ -1,8 +1,9 @@
-const logger = require('../helpers/logger');
-const findMaxStrLength = require('../helpers/find_max_str_length');
+import Migr8 from '../../migr8';
+import * as logger from '../helpers/logger';
+import findMaxStrLength from '../helpers/find_max_str_length';
 
-const list = async (migr8) => {
-  const executedMigrations = await migr8.getExecutedMigrations();
+const list = async (migr8: Migr8) => {
+  const executedMigrations = await migr8.registry.getExecutedMigrations();
   const padding = findMaxStrLength(
     executedMigrations.map(({ batch }) => batch),
   );
@@ -27,4 +28,4 @@ const list = async (migr8) => {
   return true;
 };
 
-module.exports = list;
+export default list;

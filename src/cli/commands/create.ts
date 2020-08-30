@@ -1,6 +1,8 @@
-const logger = require('../helpers/logger');
+import Migr8 from "../../migr8";
 
-const create = async (migr8, migrationName) => {
+import * as logger from '../helpers/logger';
+
+const create = async (migr8: Migr8, migrationName: string) => {
   if (!migrationName) {
     logger.warn('A name is required to create a migration.');
     return;
@@ -10,4 +12,4 @@ const create = async (migr8, migrationName) => {
   return true;
 };
 
-module.exports = create;
+export default create;

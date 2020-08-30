@@ -1,5 +1,4 @@
-import Migr8 from "../../migr8";
-
+import Migr8 from '../../migr8';
 import * as logger from '../helpers/logger';
 
 const create = async (migr8: Migr8, migrationName: string) => {

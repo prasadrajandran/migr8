@@ -1,6 +1,6 @@
-import ExecutedMigration from './executed_migration';
+import { ExecutedMigration } from './executed_migration';
 
-export default interface UppedMigrations {
+export interface UppedMigrations {
   /**
    * Migrations that were migrated.
    */

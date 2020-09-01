@@ -1,6 +1,6 @@
-import ExecutedMigration from './executed_migration';
+import { ExecutedMigration } from './executed_migration';
 
-export default interface DownedMigrations {
+export interface DownedMigrations {
   /**
    * Migrations that were rollbacked.
    */

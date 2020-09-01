@@ -1,8 +1,8 @@
-import UpArg from './up_arg';
-import DownArg from './down_arg';
-import Registry from './registry';
+import { UpArg } from './up_arg';
+import { DownArg } from './down_arg';
+import { Registry } from './registry';
 
-export default interface Migr8Constructor {
+export interface Migr8Constructor {
   /**
    * Directory that contains the migration files.
    */

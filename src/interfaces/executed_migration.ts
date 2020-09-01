@@ -1,4 +1,4 @@
-export default interface ExecutedMigration {
+export interface ExecutedMigration {
   /**
    * Name of the migration.
    */

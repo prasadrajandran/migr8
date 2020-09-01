@@ -1,7 +1,7 @@
-import ExecutedMigration from './executed_migration';
-import RegistryUpdate from './registry_update';
+import { ExecutedMigration } from './executed_migration';
+import { RegistryUpdate } from './registry_update';
 
-export default interface Registry {
+export interface Registry {
   /**
    * Get migrations that have been migrated.
    */

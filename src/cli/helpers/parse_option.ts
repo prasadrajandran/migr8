@@ -1,4 +1,4 @@
-const parseOption = (
+export const parseOption = (
   args: string[],
   name: string,
   abbreviation: string = '',
@@ -9,5 +9,3 @@ const parseOption = (
   const arg = args.find((a) => pattern.test(a)) || '';
   return arg.split('=').pop() || defaultValue;
 };
-
-export default parseOption;

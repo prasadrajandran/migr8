@@ -1,7 +1,7 @@
-import Migr8 from '../../migr8';
+import { Migr8 } from '../../migr8';
 import * as logger from '../helpers/logger';
 
-const create = async (migr8: Migr8, migrationName: string) => {
+export const create = async (migr8: Migr8, migrationName: string) => {
   if (!migrationName) {
     logger.warn('A name is required to create a migration.');
     return;
@@ -10,5 +10,3 @@ const create = async (migr8: Migr8, migrationName: string) => {
 
   return true;
 };
-
-export default create;

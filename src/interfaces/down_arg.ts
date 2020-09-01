@@ -1,4 +1,4 @@
-export default interface DownArg {
+export interface DownArg {
   /**
    * Resolves to a value that will be passed to `Migr8.down()`.
    */

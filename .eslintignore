@@ -1,3 +1,5 @@
-node_modules
-migrations
+node_modules/
+dist/
+.eslintrc.js
+babel.config.js
 migration_template.js

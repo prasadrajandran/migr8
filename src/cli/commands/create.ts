@@ -1,7 +1,10 @@
 import { Migr8 } from '../../migr8';
 import * as logger from '../helpers/logger';
 
-export const create = async (migr8: Migr8, migrationName: string) => {
+export const create = async (
+  migr8: Migr8,
+  migrationName: string,
+): Promise<true | undefined> => {
   if (!migrationName) {
     logger.warn('A name is required to create a migration.');
     return;

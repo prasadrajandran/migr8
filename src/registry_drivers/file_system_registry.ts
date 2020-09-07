@@ -17,7 +17,7 @@ export class FileSystemRegistry implements Registry {
 
   /**
    * Construct a new File System Registry Driver.
-   * 
+   *
    * @param registryFilename Filename (including the path) of the registry file.
    */
   constructor(registryFilename: string) {
@@ -49,5 +49,5 @@ export class FileSystemRegistry implements Registry {
       encoding: this.registryFileEncoding,
       flag: 'w+',
     });
-  }  
+  }
 }

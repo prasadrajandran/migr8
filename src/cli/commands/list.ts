@@ -2,7 +2,7 @@ import { Migr8 } from '../../migr8';
 import * as logger from '../helpers/logger';
 import { findMaxStrLength } from '../helpers/find_max_str_length';
 
-export const list = async (migr8: Migr8) => {
+export const list = async (migr8: Migr8): Promise<true> => {
   const executedMigrations = await migr8.registry.getExecutedMigrations();
   const padding = findMaxStrLength(
     executedMigrations.map(({ batch }) => batch),

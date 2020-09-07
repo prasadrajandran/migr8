@@ -3,8 +3,14 @@ module.exports = {
     node: true,
     es2017: true,
   },
-  extends: ['standard', 'plugin:jsdoc/recommended', 'prettier'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 8,
+    project: ['./tsconfig.json'],
   },
+  extends: [
+    'standard',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+  ],
 };

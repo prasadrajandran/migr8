@@ -1,6 +1,6 @@
 /**
  * @file This migration does the following:
- *   <TODO>
+ *   <describe what the migration does here>
  */
 
 /**

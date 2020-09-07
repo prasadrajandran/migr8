@@ -1,4 +1,4 @@
-node_modules
-migrations
-.migr8.registry.json
-.migr8.conf.js
+node_modules/
+dist/
+demo/migrations/
+demo/.migr8.registry.json

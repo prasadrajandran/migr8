@@ -1,12 +1,14 @@
 {
   "name": "migr8",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Agnostic migration tool",
-  "main": "src/migr8.js",
+  "main": "./dist/migr8.js",
+  "type": "commonjs",
   "scripts": {
-    "eslint": "eslint **/*.js",
+    "eslint": "eslint **/*.ts",
     "prettier-fix": "prettier . --write",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc --build tsconfig.json",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,17 +21,28 @@
   },
   "homepage": "https://github.com/prasadrajandran/migr8#readme",
   "devDependencies": {
-    "eslint": "^7.6.0",
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-typescript": "^7.10.4",
+    "@types/jest": "^26.0.9",
+    "@types/node": "^14.6.2",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
+    "babel-cli": "^6.26.0",
+    "eslint": "^7.8.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-jsdoc": "^30.1.0",
+    "eslint-plugin-jest": "^23.20.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "prettier": "^2.0.5"
+    "jest": "^26.2.2",
+    "prettier": "^2.0.5",
+    "typescript": "^4.0.2"
   },
   "bin": {
-    "migr8": "./src/cli.js"
-  }
+    "migr8": "./dist/cli.js"
+  },
+  "dependencies": {}
 }

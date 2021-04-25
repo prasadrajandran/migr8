@@ -17,10 +17,13 @@
   "bin": {
     "migr8": "./dist/cli.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "lint": "eslint **/*.ts",
     "prettier-fix": "prettier . --write",
-    "build": "tsc --build tsconfig.json",
+    "build": "webpack",
     "test": "jest"
   },
   "devDependencies": {
@@ -41,6 +44,7 @@
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
     "raw-loader": "^4.0.2",
+    "ts-loader": "^9.1.1",
     "typescript": "^4.2.4",
     "webpack": "^5.35.1",
     "webpack-cli": "^4.6.0"

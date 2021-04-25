@@ -17,18 +17,21 @@ rm -rf dist
 echo "4. building..."
 npm run build
 
-echo "5. linting..."
+echo "5. Add shebang to ./dist/cli.js"
+echo '#!/usr/bin/env node' | cat - ./dist/cli.js > temp && mv temp ./dist/cli.js
+
+echo "6. linting..."
 npm run lint
 
-echo "6. run prettier..."
+echo "7. run prettier..."
 npm run prettier-fix
 
-echo "7. testing..."
+echo "8. testing..."
 npm test
 
 if [ "$1" != 'test' ]
 then 
-  echo "8. check for outdated dependencies..."
+  echo "9. check for outdated dependencies..."
   npm outdated
 else
   echo "[SKIPPED] 8. check for outdated dependencies..."

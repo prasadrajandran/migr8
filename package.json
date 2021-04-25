@@ -18,12 +18,13 @@
     "migr8": "./dist/cli.js"
   },
   "scripts": {
-    "eslint": "eslint **/*.ts",
+    "lint": "eslint **/*.ts",
     "prettier-fix": "prettier . --write",
     "build": "tsc --build tsconfig.json",
     "test": "jest"
   },
   "devDependencies": {
+    "@tsconfig/node10": "^1.0.7",
     "@types/jest": "^26.0.22",
     "@types/node": "^14.14.41",
     "@typescript-eslint/eslint-plugin": "^4.22.0",

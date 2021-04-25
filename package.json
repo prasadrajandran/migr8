@@ -1,48 +1,47 @@
 {
-  "name": "migr8",
-  "version": "0.2.0",
+  "name": "@prasadrajandran/migr8",
+  "version": "1.0.0-alpha.1",
   "description": "Agnostic migration tool",
-  "main": "./dist/migr8.js",
+  "homepage": "https://github.com/prasadrajandran/migr8#readme",
+  "bugs": {
+    "url": "https://github.com/prasadrajandran/migr8/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prasadrajandran/migr8.git"
+  },
+  "license": "MIT",
+  "author": "Prasad Rajandran",
   "type": "commonjs",
+  "main": "./dist/migr8.js",
+  "bin": {
+    "migr8": "./dist/cli.js"
+  },
   "scripts": {
     "eslint": "eslint **/*.ts",
     "prettier-fix": "prettier . --write",
     "build": "tsc --build tsconfig.json",
     "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/prasadrajandran/migr8.git"
-  },
-  "author": "Prasad Rajandran",
-  "license": "",
-  "bugs": {
-    "url": "https://github.com/prasadrajandran/migr8/issues"
-  },
-  "homepage": "https://github.com/prasadrajandran/migr8#readme",
   "devDependencies": {
-    "@babel/core": "^7.11.1",
-    "@babel/preset-env": "^7.11.0",
-    "@babel/preset-typescript": "^7.10.4",
-    "@types/jest": "^26.0.9",
-    "@types/node": "^14.6.2",
-    "@typescript-eslint/eslint-plugin": "^4.0.1",
-    "@typescript-eslint/parser": "^4.0.1",
-    "babel-cli": "^6.26.0",
-    "eslint": "^7.8.1",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-jest": "^23.20.0",
+    "@types/jest": "^26.0.22",
+    "@types/node": "^14.14.41",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.25.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.3.5",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "jest": "^26.2.2",
-    "prettier": "^2.0.5",
-    "typescript": "^4.0.2"
-  },
-  "bin": {
-    "migr8": "./dist/cli.js"
-  },
-  "dependencies": {}
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "eslint-plugin-tsdoc": "^0.2.14",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "raw-loader": "^4.0.2",
+    "typescript": "^4.2.4",
+    "webpack": "^5.35.1",
+    "webpack-cli": "^4.6.0"
+  }
 }

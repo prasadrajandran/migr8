@@ -18,7 +18,7 @@ export class FileSystemRegistry implements Registry {
   /**
    * Construct a new File System Registry Driver.
    *
-   * @param registryFilename Filename (including the path) of the registry file.
+   * @param registryFilename - Filename (including the path) of the registry file.
    */
   constructor(registryFilename: string) {
     this.registryFilename = path.resolve(registryFilename);
@@ -42,7 +42,7 @@ export class FileSystemRegistry implements Registry {
   /**
    * Set executed migrations.
    *
-   * @param update Updated details.
+   * @param update - Updated details.
    */
   async setExecutedMigrations({ migrations }: RegistryUpdate): Promise<void> {
     fs.writeFileSync(this.registryFilename, JSON.stringify(migrations), {

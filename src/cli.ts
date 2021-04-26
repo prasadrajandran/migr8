@@ -1,7 +1,5 @@
-#!/usr/bin/env node
-
 import * as path from 'path';
-import { Migr8 } from './migr8.js';
+import { Migr8 } from './migr8';
 import { Migr8Config } from './interfaces/migr8_config';
 import { FileSystemRegistry } from './registry_drivers/file_system_registry';
 import * as logger from './cli/helpers/logger';
@@ -13,7 +11,8 @@ import { down as downCmd } from './cli/commands/down';
 import { list as listCmd } from './cli/commands/list';
 import { clear as clearCmd } from './cli/commands/clear';
 import { reset as resetCmd } from './cli/commands/reset';
-import { Migr8Constructor } from './interfaces/migr8_constructor.js';
+import { version as versionCmd } from './cli/commands/version';
+import { Migr8Constructor } from './interfaces/migr8_constructor';
 
 const DEFAULT_CONFIG_FILENAME = './.migr8.config.js';
 const DEFAULT_FILE_SYSTEM_REGISTRY_FILENAME = './.migr8.registry.json';
@@ -63,6 +62,7 @@ const cmd = parseCommands(
   'list',
   'clear',
   'reset',
+  'version',
 );
 
 (async () => {
@@ -84,6 +84,9 @@ const cmd = parseCommands(
       break;
     case 'reset':
       await resetCmd(migr8);
+      break;
+    case 'version':
+      await versionCmd();
       break;
     default:
       logger.warn('Invalid command.');

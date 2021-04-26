@@ -12,7 +12,7 @@ export interface Registry {
    *
    * This is how we keep track of what has been and has not been migrated.
    *
-   * @param data Updated details.
+   * @param data - Updated details.
    */
   setExecutedMigrations(data: RegistryUpdate): Promise<void>;
 }

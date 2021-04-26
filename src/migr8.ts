@@ -63,7 +63,7 @@ export class Migr8 {
   /**
    * Create a new Migr8 instance.
    *
-   * @param arg Constructor arg.
+   * @param arg - Constructor arg.
    */
   constructor({
     migrationsDir,
@@ -82,7 +82,7 @@ export class Migr8 {
   /**
    * Create a new migration file.
    *
-   * @param migrationName Name (not including the path) of the migration.
+   * @param migrationName - Name (not including the path) of the migration.
    * @returns Promise that resolves to the filename of the migration that was
    *     created.
    */
@@ -104,7 +104,7 @@ export class Migr8 {
   /**
    * Run pending migrations.
    *
-   * @param options Options to adjust the operation.
+   * @param options - Options to adjust the operation.
    * @returns Results of the migration.
    */
   async up({ num }: UpOptions = {}): Promise<UppedMigrations> {
@@ -155,7 +155,7 @@ export class Migr8 {
   /**
    * Rollback latest batch of executed migrations.
    *
-   * @param options Options to adjust the operation.
+   * @param options - Options to adjust the operation.
    * @returns Results of the rollback.
    */
   async down({ num }: DownOptions = {}): Promise<DownedMigrations> {
@@ -209,7 +209,7 @@ export class Migr8 {
    *
    * Timezonze: UTC 00:00.
    *
-   * @param migrationName Name of the migration (without the path).
+   * @param migrationName - Name of the migration (without the path).
    * @returns A promise that resolves to the generated filename.
    */
   async createFilename(migrationName: string): Promise<string> {

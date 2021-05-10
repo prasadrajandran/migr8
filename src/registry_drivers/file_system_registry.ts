@@ -1,5 +1,5 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import { resolve } from 'path';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { Registry } from '../interfaces/registry';
 import { ExecutedMigration } from '../interfaces/executed_migration';
 import { RegistryUpdate } from '../interfaces/registry_update';
@@ -18,21 +18,22 @@ export class FileSystemRegistry implements Registry {
   /**
    * Construct a new File System Registry Driver.
    *
-   * @param registryFilename - Filename (including the path) of the registry file.
+   * @param registryFilename - Filename (including the path) of the registry
+   *     file.
    */
   constructor(registryFilename: string) {
-    this.registryFilename = path.resolve(registryFilename);
+    this.registryFilename = resolve(registryFilename);
   }
 
   /**
    * Get migrations that have been migrated.
    */
   async getExecutedMigrations(): Promise<ExecutedMigration[]> {
-    if (!fs.existsSync(this.registryFilename)) {
+    if (!existsSync(this.registryFilename)) {
       return [];
     }
     return JSON.parse(
-      fs.readFileSync(this.registryFilename, {
+      readFileSync(this.registryFilename, {
         encoding: 'utf8',
         flag: 'r',
       }),
@@ -45,7 +46,7 @@ export class FileSystemRegistry implements Registry {
    * @param update - Updated details.
    */
   async setExecutedMigrations({ migrations }: RegistryUpdate): Promise<void> {
-    fs.writeFileSync(this.registryFilename, JSON.stringify(migrations), {
+    writeFileSync(this.registryFilename, JSON.stringify(migrations), {
       encoding: this.registryFileEncoding,
       flag: 'w+',
     });

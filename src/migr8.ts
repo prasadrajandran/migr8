@@ -1,11 +1,16 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
+import { resolve } from 'path';
 import { Migr8Constructor } from './interfaces/migr8_constructor';
 import { Registry } from './interfaces/registry';
 import { UppedMigrations } from './interfaces/upped_migrations';
 import { DownedMigrations } from './interfaces/downed_migrations';
 import { UpArg } from './interfaces/up_arg';
 import { DownArg } from './interfaces/down_arg';
+import { FileSystemRegistry } from './registry_drivers/file_system_registry';
+
+const DEFAULT_TEMPLATE_FILENAME = resolve(__dirname, 'migration_template.js');
+const DEFAULT_MIGRATIONS_DIR = './migrations';
+const DEFAULT_FILE_SYSTEM_REGISTRY_FILENAME = './.migr8.registry.json';
 
 interface UpOptions {
   /**
@@ -72,11 +77,15 @@ export class Migr8 {
     upArg,
     downArg,
   }: Migr8Constructor) {
-    this.migrationsDir = path.resolve(migrationsDir);
-    this.templateFilename = path.resolve(templateFilename);
-    this.registry = registry;
-    this.upArg = upArg;
-    this.downArg = downArg;
+    this.migrationsDir = resolve(migrationsDir || DEFAULT_MIGRATIONS_DIR);
+    this.templateFilename = templateFilename
+      ? resolve(templateFilename)
+      : DEFAULT_TEMPLATE_FILENAME;
+    this.registry =
+      registry ||
+      new FileSystemRegistry(resolve(DEFAULT_FILE_SYSTEM_REGISTRY_FILENAME));
+    this.upArg = upArg || (async () => undefined);
+    this.downArg = downArg || (async () => undefined);
   }
 
   /**
@@ -88,12 +97,12 @@ export class Migr8 {
    */
   async create(migrationName: string): Promise<string> {
     const filename = await this.createFilename(migrationName);
-    const template = fs.readFileSync(this.templateFilename, {
+    const template = readFileSync(this.templateFilename, {
       encoding: this.migrationFileEncoding,
       flag: 'r',
     });
 
-    fs.writeFileSync(filename, template, {
+    writeFileSync(filename, template, {
       encoding: this.migrationFileEncoding,
       flag: 'wx',
     });
@@ -126,7 +135,7 @@ export class Migr8 {
           break;
         }
 
-        const filename = path.resolve(this.migrationsDir, name);
+        const filename = resolve(this.migrationsDir, name);
         const file = await import(filename);
         await file.up(arg);
 
@@ -184,7 +193,7 @@ export class Migr8 {
           break;
         }
 
-        const filename = path.resolve(this.migrationsDir, migration.name);
+        const filename = resolve(this.migrationsDir, migration.name);
         const file = await import(filename);
         await file.down(arg);
 
@@ -224,7 +233,7 @@ export class Migr8 {
       extension = extensionMatch.pop() || '';
     }
 
-    return path.resolve(
+    return resolve(
       this.migrationsDir,
       `${timestamp}_${migrationName}${extension}`,
     );
@@ -236,12 +245,12 @@ export class Migr8 {
    * @returns Migration filenames (not including the path).
    */
   async getMigrations(): Promise<string[]> {
-    if (!fs.existsSync(this.migrationsDir)) {
+    if (!existsSync(this.migrationsDir)) {
       return [];
     }
-    return fs
-      .readdirSync(this.migrationsDir, { encoding: this.migrationFileEncoding })
-      .sort();
+    return readdirSync(this.migrationsDir, {
+      encoding: this.migrationFileEncoding,
+    }).sort();
   }
 
   /**

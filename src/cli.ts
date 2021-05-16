@@ -5,11 +5,17 @@ import { Migr8 } from './migr8';
 import * as logger from './cli/helpers/logger';
 import { Migr8Config } from './interfaces/migr8_config';
 import { findMaxStrLength } from './cli/helpers/find_max_str_length';
+import man from './man_pages/man.txt';
+import createMan from './man_pages/create_man.txt';
+import upMan from './man_pages/up_man.txt';
+import downMan from './man_pages/down_man.txt';
+import listMan from './man_pages/list_man.txt';
+import clearMan from './man_pages/clear_man.txt';
+import resetMan from './man_pages/reset_man.txt';
 import {
   name as packageName,
   version as packageVersion,
 } from '../package.json';
-import man from './man.txt';
 
 const DEFAULT_CONFIG_FILENAME = resolve(__dirname, './.migr8.config.js');
 
@@ -42,30 +48,6 @@ const { opts, cmds, args, errors } = getopts({
         }
       },
     },
-    {
-      longName: '--template',
-      arg: 'required',
-      argFilter: (arg) => {
-        const filename = resolve(arg);
-        if (existsSync(filename)) {
-          return filename;
-        } else {
-          throw new Error(`${filename} does not exist`);
-        }
-      },
-    },
-    {
-      longName: '--migrations-dir',
-      arg: 'required',
-      argFilter: (arg) => {
-        const dir = resolve(arg);
-        if (existsSync(dir)) {
-          return dir;
-        } else {
-          throw new Error(`${dir} does not exist`);
-        }
-      },
-    },
   ],
   cmds: [
     { name: 'create', minArgs: 1 },
@@ -77,20 +59,41 @@ const { opts, cmds, args, errors } = getopts({
   ],
 });
 
-(async () => {
-  if (opts.has('--help')) {
-    logger.inform(man);
-    return;
-  } else if (opts.has('--version')) {
-    logger.inform(`${packageName}: ${packageVersion}`);
-    return;
-  } else if (errors.length) {
-    for (const { name, message } of errors) {
-      logger.scream(`[${name}] ${message}`);
-    }
-    return;
+if (opts.has('--help')) {
+  switch (cmds[0]) {
+    case 'create':
+      logger.inform(createMan);
+      break;
+    case 'up':
+      logger.inform(upMan);
+      break;
+    case 'down':
+      logger.inform(downMan);
+      break;
+    case 'list':
+      logger.inform(listMan);
+      break;
+    case 'clear':
+      logger.inform(clearMan);
+      break;
+    case 'reset':
+      logger.inform(resetMan);
+      break;
+    default:
+      logger.inform(man);
   }
+  process.exit(0);
+} else if (opts.has('--version')) {
+  logger.inform(`${packageName}: ${packageVersion}`);
+  process.exit(0);
+} else if (errors.length) {
+  for (const { name, message } of errors) {
+    logger.scream(`${packageName}: (${name}) ${message}`);
+  }
+  process.exit(1);
+}
 
+(async () => {
   const config = ((): Migr8Config | undefined => {
     if (opts.has('--config')) {
       return opts.get('--config') as Migr8Config;
@@ -98,17 +101,7 @@ const { opts, cmds, args, errors } = getopts({
       return require(DEFAULT_CONFIG_FILENAME);
     }
   })();
-  const migr8 = new (config?.Migr8 || Migr8)({
-    migrationsDir:
-      (opts.get('--migrations-dir') as string) || config?.migrationsDir,
-
-    templateFilename:
-      (opts.get('--template') as string) || config?.templateFilename,
-
-    registry: config?.registry,
-    upArg: config?.upArg,
-    downArg: config?.downArg,
-  });
+  const migr8 = new (config?.Migr8 || Migr8)(config || {});
 
   const cli = {
     create: async () => {
@@ -130,13 +123,14 @@ const { opts, cmds, args, errors } = getopts({
         )}`;
         logger.inform(`${status}  ${name}`);
       }
+
       if (err) {
-        logger.scream(err);
+        return err;
       } else if (!migrations.length) {
         logger.inform('Nothing to migrate.');
       }
 
-      return err || true;
+      return true;
     },
     down: async (n?: number) => {
       const num = (n ||
@@ -153,12 +147,12 @@ const { opts, cmds, args, errors } = getopts({
         logger.inform(`${status}  ${name}`);
       }
       if (err) {
-        logger.scream(err);
+        return err;
       } else if (!migrations.length) {
         logger.inform('Nothing to rollback.');
       }
 
-      return err || true;
+      return true;
     },
     list: async () => {
       const executedMigrations = await migr8.registry.getExecutedMigrations();
@@ -192,21 +186,26 @@ const { opts, cmds, args, errors } = getopts({
       return await cli.down(num);
     },
     reset: async (): Promise<true | Error> => {
-      const clearCmdValue = await cli.clear();
-      if (clearCmdValue !== true) {
-        return clearCmdValue;
+      const clearCmdResult = await cli.clear();
+      if (clearCmdResult !== true) {
+        return clearCmdResult;
       }
-
-      const upCmdValue = await cli.up();
-      if (upCmdValue !== true) {
-        return upCmdValue;
-      }
-
-      return true;
+      return await cli.up();
     },
   };
 
   const cmd = cmds[0] as 'create' | 'up' | 'down' | 'list' | 'clear' | 'reset';
 
-  await cli[cmd]();
+  try {
+    const result = await cli[cmd]();
+    if (result !== true) {
+      logger.scream(`${packageName}: ${result}`);
+      process.exit(1);
+    }
+  } catch (err) {
+    // This prints errors that are unexpected (i.e. errors that are thrown by
+    // the command, not errors that are returned).
+    logger.scream(`${packageName}: ${err}`);
+    process.exit(1);
+  }
 })();

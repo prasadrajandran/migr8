@@ -1,0 +1,6 @@
+Usage: migr8 up [OPTION]...
+
+Execute pending migrations.
+
+OPTIONS
+-n, --num=NUM   Limit the number of pending migrations to execute.

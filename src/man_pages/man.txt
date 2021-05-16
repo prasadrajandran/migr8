@@ -1,0 +1,26 @@
+Usage: migr8 [OPTION]... COMMAND
+
+Agnostic migration utility.
+
+OPTIONS
+--config=FILENAME  Location of the config file. If this option is not specified,
+                   the package will attempt to load .migr8.config.js in the
+                   current working directory.
+
+COMMANDS
+create             Create one or more migration files.
+
+up                 Execute pending migrations.
+
+down               Rollback a batch of executed migrations.
+
+list               List all migrations.
+
+clear              Rollback all executed migrations.
+
+reset              Rollback any executed migrations and then execute all the
+                   migrations. This is the equivalent of running "clear"
+                   followed by "up".
+
+REPOSITORY
+https://github.com/prasadrajandran/migr8

@@ -1,11 +1,17 @@
 const path = require('path');
 const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'production',
   target: 'node',
   entry: './src/cli.ts',
   plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: './src/migration_template.js', info: { minimized: true } },
+      ],
+    }),
     new webpack.BannerPlugin({
       banner: '#!/usr/bin/env node',
       raw: true,

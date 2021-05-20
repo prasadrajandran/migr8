@@ -10,7 +10,6 @@ import { FileSystemRegistry } from './registry_drivers/file_system_registry';
 
 const DEFAULT_TEMPLATE_FILENAME = resolve(__dirname, 'migration_template.js');
 const DEFAULT_MIGRATIONS_DIR = './migrations';
-const DEFAULT_FILE_SYSTEM_REGISTRY_FILENAME = './.migr8.registry.json';
 
 interface UpOptions {
   /**
@@ -81,9 +80,7 @@ export class Migr8 {
     this.templateFilename = templateFilename
       ? resolve(templateFilename)
       : DEFAULT_TEMPLATE_FILENAME;
-    this.registry =
-      registry ||
-      new FileSystemRegistry(resolve(DEFAULT_FILE_SYSTEM_REGISTRY_FILENAME));
+    this.registry = registry || new FileSystemRegistry();
     this.upArg = upArg || (async () => undefined);
     this.downArg = downArg || (async () => undefined);
   }

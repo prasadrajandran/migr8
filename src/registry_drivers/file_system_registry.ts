@@ -4,6 +4,8 @@ import { Registry } from '../interfaces/registry';
 import { ExecutedMigration } from '../interfaces/executed_migration';
 import { RegistryUpdate } from '../interfaces/registry_update';
 
+const DEFAULT_REGISTRY_FILENAME = './.migr8.registry.json';
+
 export class FileSystemRegistry implements Registry {
   /**
    * File encoding of the registry.
@@ -21,8 +23,10 @@ export class FileSystemRegistry implements Registry {
    * @param registryFilename - Filename (including the path) of the registry
    *     file.
    */
-  constructor(registryFilename: string) {
-    this.registryFilename = resolve(registryFilename);
+  constructor(registryFilename?: string) {
+    this.registryFilename = resolve(
+      registryFilename || DEFAULT_REGISTRY_FILENAME,
+    );
   }
 
   /**

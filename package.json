@@ -24,7 +24,8 @@
     "lint": "eslint **/*.ts",
     "prettier-fix": "prettier . --write",
     "build": "webpack",
-    "test": "jest"
+    "test": "jest",
+    "build-and-test": "npm run build && npm run test"
   },
   "devDependencies": {
     "@prasadrajandran/getopts": "^1.0.0",

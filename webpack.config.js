@@ -1,9 +1,17 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   mode: 'production',
   target: 'node',
   entry: './src/cli.ts',
+  plugins: [
+    new webpack.BannerPlugin({
+      banner: '#!/usr/bin/env node',
+      raw: true,
+      include: /cli\.js$/,
+    }),
+  ],
   module: {
     rules: [
       {
@@ -21,7 +29,8 @@ module.exports = {
     extensions: ['.ts', '.js'],
   },
   output: {
-    filename: 'migr8.js',
+    clean: true,
+    filename: 'cli.js',
     path: path.resolve(__dirname, 'dist'),
   },
 };

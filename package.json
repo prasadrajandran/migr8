@@ -23,8 +23,9 @@
   "scripts": {
     "lint": "eslint **/*.ts",
     "prettier-fix": "prettier . --write",
-    "build": "webpack",
+    "build-cli": "webpack",
     "build-docs": "typedoc",
+    "build": "npm run build-cli && tsc --project ./tsconfig.build.json",
     "test": "jest",
     "build-and-test": "npm run build && npm run test"
   },

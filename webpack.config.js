@@ -28,6 +28,7 @@ module.exports = {
       {
         test: /\.txt$/,
         use: 'raw-loader',
+        exclude: /node_modules/,
       },
     ],
   },
@@ -37,6 +38,6 @@ module.exports = {
   output: {
     clean: true,
     filename: 'cli.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'd'),
   },
 };

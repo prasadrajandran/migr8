@@ -13,12 +13,12 @@
   "license": "MIT",
   "author": "Prasad Rajandran",
   "type": "commonjs",
-  "main": "./dist/migr8.js",
+  "main": "./d/migr8.js",
   "bin": {
-    "migr8": "./dist/cli.js"
+    "migr8": "./d/cli.js"
   },
   "files": [
-    "dist"
+    "d"
   ],
   "scripts": {
     "lint": "eslint **/*.ts",

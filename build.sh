@@ -9,16 +9,23 @@ npx sort-package-json
 echo "3. building..."
 npm run build
 
-echo "4. linting..."
+echo "4. build docs..."
+rm -r docs/
+npm run build-docs
+# Remove the first two lines from README file. The title is duplicated for some
+# reason.
+tail -n +3 ./docs/README.md > ./docs/temp && mv ./docs/temp ./docs/README.md
+
+echo "5. linting..."
 npm run lint
 
-echo "5. run prettier..."
+echo "6. run prettier..."
 npm run prettier-fix
 
-echo "6. testing..."
+echo "7. testing..."
 npm test
 
-echo "7. check for outdated dependencies..."
+echo "8. check for outdated dependencies..."
 npm outdated
 
 package_version=`cat package.json | grep version`

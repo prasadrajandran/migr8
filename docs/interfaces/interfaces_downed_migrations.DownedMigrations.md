@@ -21,7 +21,7 @@ Reference to the Error if an error occured.
 
 #### Defined in
 
-[interfaces/downed_migrations.ts:12](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/downed_migrations.ts#L12)
+[interfaces/downed_migrations.ts:12](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/downed_migrations.ts#L12)
 
 ---
 
@@ -29,8 +29,8 @@ Reference to the Error if an error occured.
 
 • **migrations**: [`ExecutedMigration`](interfaces_executed_migration.ExecutedMigration.md)[]
 
-Migrations that were rollbacked.
+Migrations that were rolledback.
 
 #### Defined in
 
-[interfaces/downed_migrations.ts:7](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/downed_migrations.ts#L7)
+[interfaces/downed_migrations.ts:7](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/downed_migrations.ts#L7)

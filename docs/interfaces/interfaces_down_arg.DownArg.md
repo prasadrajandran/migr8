@@ -18,4 +18,4 @@ Resolves to a value that will be passed to `Migr8.down()`.
 
 #### Defined in
 
-[interfaces/down_arg.ts:5](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/down_arg.ts#L5)
+[interfaces/down_arg.ts:5](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/down_arg.ts#L5)

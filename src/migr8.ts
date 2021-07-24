@@ -59,7 +59,7 @@ export class Migr8 {
 
   /**
    * Callback that is executed to produce an argument that will be passed to
-   * migrations when they are being rollbacked.
+   * migrations when they are being rolledback.
    */
 
   downArg: DownArg;

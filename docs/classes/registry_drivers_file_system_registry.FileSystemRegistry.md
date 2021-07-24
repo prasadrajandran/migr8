@@ -40,7 +40,7 @@ Construct a new File System Registry Driver.
 
 #### Defined in
 
-[registry_drivers/file_system_registry.ts:26](https://github.com/prasadrajandran/migr8/blob/33defe4/src/registry_drivers/file_system_registry.ts#L26)
+[registry_drivers/file_system_registry.ts:26](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/registry_drivers/file_system_registry.ts#L26)
 
 ## Properties
 
@@ -52,7 +52,7 @@ File encoding of the registry.
 
 #### Defined in
 
-[registry_drivers/file_system_registry.ts:13](https://github.com/prasadrajandran/migr8/blob/33defe4/src/registry_drivers/file_system_registry.ts#L13)
+[registry_drivers/file_system_registry.ts:13](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/registry_drivers/file_system_registry.ts#L13)
 
 ---
 
@@ -64,7 +64,7 @@ Filename (including the path) of the registry file.
 
 #### Defined in
 
-[registry_drivers/file_system_registry.ts:18](https://github.com/prasadrajandran/migr8/blob/33defe4/src/registry_drivers/file_system_registry.ts#L18)
+[registry_drivers/file_system_registry.ts:18](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/registry_drivers/file_system_registry.ts#L18)
 
 ## Methods
 
@@ -84,7 +84,7 @@ Get migrations that have been migrated.
 
 #### Defined in
 
-[registry_drivers/file_system_registry.ts:35](https://github.com/prasadrajandran/migr8/blob/33defe4/src/registry_drivers/file_system_registry.ts#L35)
+[registry_drivers/file_system_registry.ts:35](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/registry_drivers/file_system_registry.ts#L35)
 
 ---
 
@@ -110,4 +110,4 @@ Set executed migrations.
 
 #### Defined in
 
-[registry_drivers/file_system_registry.ts:52](https://github.com/prasadrajandran/migr8/blob/33defe4/src/registry_drivers/file_system_registry.ts#L52)
+[registry_drivers/file_system_registry.ts:52](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/registry_drivers/file_system_registry.ts#L52)

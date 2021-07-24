@@ -21,7 +21,7 @@ Reference to the Error if an error occured.
 
 #### Defined in
 
-[interfaces/upped_migrations.ts:12](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/upped_migrations.ts#L12)
+[interfaces/upped_migrations.ts:12](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/upped_migrations.ts#L12)
 
 ---
 
@@ -33,4 +33,4 @@ Migrations that were migrated.
 
 #### Defined in
 
-[interfaces/upped_migrations.ts:7](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/upped_migrations.ts#L7)
+[interfaces/upped_migrations.ts:7](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/upped_migrations.ts#L7)

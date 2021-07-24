@@ -18,4 +18,4 @@ Resolves to a value that will be passed to `Migr8.up()`.
 
 #### Defined in
 
-[interfaces/up_arg.ts:5](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/up_arg.ts#L5)
+[interfaces/up_arg.ts:5](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/up_arg.ts#L5)

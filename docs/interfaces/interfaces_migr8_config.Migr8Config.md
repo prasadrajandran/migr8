@@ -26,7 +26,7 @@ inherits from Migr8 and its API is unchanged. Will default to Migr8.
 
 #### Defined in
 
-[interfaces/migr8_config.ts:9](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/migr8_config.ts#L9)
+[interfaces/migr8_config.ts:9](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/migr8_config.ts#L9)
 
 ---
 
@@ -35,11 +35,11 @@ inherits from Migr8 and its API is unchanged. Will default to Migr8.
 • `Optional` **downArg**: [`DownArg`](interfaces_down_arg.DownArg.md)
 
 Function whose resolved value will be passed to migrations that are being
-rollback. Will default to a function that resolves to undefined.
+rolledback. Will default to a function that resolves to undefined.
 
 #### Defined in
 
-[interfaces/migr8_config.ts:38](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/migr8_config.ts#L38)
+[interfaces/migr8_config.ts:38](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/migr8_config.ts#L38)
 
 ---
 
@@ -52,7 +52,7 @@ directory.
 
 #### Defined in
 
-[interfaces/migr8_config.ts:15](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/migr8_config.ts#L15)
+[interfaces/migr8_config.ts:15](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/migr8_config.ts#L15)
 
 ---
 
@@ -65,7 +65,7 @@ specified.
 
 #### Defined in
 
-[interfaces/migr8_config.ts:26](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/migr8_config.ts#L26)
+[interfaces/migr8_config.ts:26](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/migr8_config.ts#L26)
 
 ---
 
@@ -77,7 +77,7 @@ Template for the migration files. A default will be used if not specified.
 
 #### Defined in
 
-[interfaces/migr8_config.ts:20](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/migr8_config.ts#L20)
+[interfaces/migr8_config.ts:20](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/migr8_config.ts#L20)
 
 ---
 
@@ -90,4 +90,4 @@ executed. Will default to a function that resolves to undefined.
 
 #### Defined in
 
-[interfaces/migr8_config.ts:32](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/migr8_config.ts#L32)
+[interfaces/migr8_config.ts:32](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/migr8_config.ts#L32)

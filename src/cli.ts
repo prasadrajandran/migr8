@@ -140,7 +140,7 @@ if (opts.has('--help')) {
       const padding = findMaxStrLength(migrations.map(({ batch }) => batch));
 
       for (const { name, batch } of migrations) {
-        const status = `Rollbacked  Batch ${String(batch).padStart(
+        const status = `Rolledback  Batch ${String(batch).padStart(
           padding,
           '0',
         )}`;

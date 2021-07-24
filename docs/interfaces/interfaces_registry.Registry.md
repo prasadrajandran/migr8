@@ -29,7 +29,7 @@ Get migrations that have been migrated.
 
 #### Defined in
 
-[interfaces/registry.ts:8](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/registry.ts#L8)
+[interfaces/registry.ts:8](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/registry.ts#L8)
 
 ---
 
@@ -53,4 +53,4 @@ This is how we keep track of what has been and has not been migrated.
 
 #### Defined in
 
-[interfaces/registry.ts:17](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/registry.ts#L17)
+[interfaces/registry.ts:17](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/registry.ts#L17)

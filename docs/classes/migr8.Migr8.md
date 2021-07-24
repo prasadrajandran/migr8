@@ -44,7 +44,7 @@ Create a new Migr8 instance.
 
 #### Defined in
 
-[migr8.ts:72](https://github.com/prasadrajandran/migr8/blob/33defe4/src/migr8.ts#L72)
+[migr8.ts:72](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/migr8.ts#L72)
 
 ## Properties
 
@@ -53,11 +53,11 @@ Create a new Migr8 instance.
 • **downArg**: [`DownArg`](../interfaces/interfaces_down_arg.DownArg.md)
 
 Callback that is executed to produce an argument that will be passed to
-migrations when they are being rollbacked.
+migrations when they are being rolledback.
 
 #### Defined in
 
-[migr8.ts:65](https://github.com/prasadrajandran/migr8/blob/33defe4/src/migr8.ts#L65)
+[migr8.ts:65](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/migr8.ts#L65)
 
 ---
 
@@ -69,7 +69,7 @@ File encoding for the migration files.
 
 #### Defined in
 
-[migr8.ts:33](https://github.com/prasadrajandran/migr8/blob/33defe4/src/migr8.ts#L33)
+[migr8.ts:33](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/migr8.ts#L33)
 
 ---
 
@@ -81,7 +81,7 @@ Absolute path to the folder housing the migrations.
 
 #### Defined in
 
-[migr8.ts:39](https://github.com/prasadrajandran/migr8/blob/33defe4/src/migr8.ts#L39)
+[migr8.ts:39](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/migr8.ts#L39)
 
 ---
 
@@ -94,7 +94,7 @@ migrations.
 
 #### Defined in
 
-[migr8.ts:51](https://github.com/prasadrajandran/migr8/blob/33defe4/src/migr8.ts#L51)
+[migr8.ts:51](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/migr8.ts#L51)
 
 ---
 
@@ -106,7 +106,7 @@ Absolute path to the template for new migrations.
 
 #### Defined in
 
-[migr8.ts:45](https://github.com/prasadrajandran/migr8/blob/33defe4/src/migr8.ts#L45)
+[migr8.ts:45](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/migr8.ts#L45)
 
 ---
 
@@ -119,7 +119,7 @@ migrations when they are being migrated.
 
 #### Defined in
 
-[migr8.ts:58](https://github.com/prasadrajandran/migr8/blob/33defe4/src/migr8.ts#L58)
+[migr8.ts:58](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/migr8.ts#L58)
 
 ## Methods
 
@@ -144,7 +144,7 @@ created.
 
 #### Defined in
 
-[migr8.ts:95](https://github.com/prasadrajandran/migr8/blob/33defe4/src/migr8.ts#L95)
+[migr8.ts:95](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/migr8.ts#L95)
 
 ---
 
@@ -170,7 +170,7 @@ A promise that resolves to the generated filename.
 
 #### Defined in
 
-[migr8.ts:221](https://github.com/prasadrajandran/migr8/blob/33defe4/src/migr8.ts#L221)
+[migr8.ts:221](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/migr8.ts#L221)
 
 ---
 
@@ -194,7 +194,7 @@ Results of the rollback.
 
 #### Defined in
 
-[migr8.ts:167](https://github.com/prasadrajandran/migr8/blob/33defe4/src/migr8.ts#L167)
+[migr8.ts:167](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/migr8.ts#L167)
 
 ---
 
@@ -212,7 +212,7 @@ Migration filenames (not including the path).
 
 #### Defined in
 
-[migr8.ts:244](https://github.com/prasadrajandran/migr8/blob/33defe4/src/migr8.ts#L244)
+[migr8.ts:244](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/migr8.ts#L244)
 
 ---
 
@@ -230,7 +230,7 @@ Pending migration filenames (not including the path).
 
 #### Defined in
 
-[migr8.ts:258](https://github.com/prasadrajandran/migr8/blob/33defe4/src/migr8.ts#L258)
+[migr8.ts:258](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/migr8.ts#L258)
 
 ---
 
@@ -254,4 +254,4 @@ Results of the migration.
 
 #### Defined in
 
-[migr8.ts:116](https://github.com/prasadrajandran/migr8/blob/33defe4/src/migr8.ts#L116)
+[migr8.ts:116](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/migr8.ts#L116)

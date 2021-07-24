@@ -22,7 +22,7 @@ Operation that was performed.
 
 #### Defined in
 
-[interfaces/registry_update.ts:7](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/registry_update.ts#L7)
+[interfaces/registry_update.ts:7](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/registry_update.ts#L7)
 
 ---
 
@@ -30,11 +30,11 @@ Operation that was performed.
 
 • **migration**: [`ExecutedMigration`](interfaces_executed_migration.ExecutedMigration.md)
 
-Migration that was either executed or rollbacked.
+Migration that was either executed or rolledback.
 
 #### Defined in
 
-[interfaces/registry_update.ts:17](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/registry_update.ts#L17)
+[interfaces/registry_update.ts:17](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/registry_update.ts#L17)
 
 ---
 
@@ -46,4 +46,4 @@ All executed migrations.
 
 #### Defined in
 
-[interfaces/registry_update.ts:12](https://github.com/prasadrajandran/migr8/blob/33defe4/src/interfaces/registry_update.ts#L12)
+[interfaces/registry_update.ts:12](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/registry_update.ts#L12)

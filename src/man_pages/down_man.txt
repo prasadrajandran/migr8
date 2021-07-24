@@ -6,4 +6,4 @@ OPTIONS
 -n, --num=NUM   Specify the number of executed migrations to rollback. Batches
                 are ignored if this is specified. If NUM is more than or equal
                 to the total number of executed migrations, then all executed
-                migrations are rollbacked.
+                migrations are rolledback.

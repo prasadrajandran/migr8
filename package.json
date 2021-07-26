@@ -2,6 +2,16 @@
   "name": "@prasadrajandran/migr8",
   "version": "1.0.0-alpha.1",
   "description": "Agnostic migration tool",
+  "keywords": [
+    "migrate",
+    "migrations",
+    "database",
+    "agnostic",
+    "extendable",
+    "customizable",
+    "DB",
+    "CLI"
+  ],
   "homepage": "https://github.com/prasadrajandran/migr8#readme",
   "bugs": {
     "url": "https://github.com/prasadrajandran/migr8/issues"

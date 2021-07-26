@@ -1,0 +1,8 @@
+{
+  "name": "migr8",
+  "out": "docs",
+  "includeVersion": true,
+  "readme": "none",
+  "entryPoints": ["src/"],
+  "exclude": ["src/cli.ts", "src/cli/", "src/custom.d.ts"]
+}

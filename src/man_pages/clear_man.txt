@@ -1,0 +1,3 @@
+Usage: migr8 clear
+
+Rollback all executed migrations

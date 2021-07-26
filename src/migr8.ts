@@ -1,11 +1,15 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
+import { resolve } from 'path';
 import { Migr8Constructor } from './interfaces/migr8_constructor';
 import { Registry } from './interfaces/registry';
 import { UppedMigrations } from './interfaces/upped_migrations';
 import { DownedMigrations } from './interfaces/downed_migrations';
 import { UpArg } from './interfaces/up_arg';
 import { DownArg } from './interfaces/down_arg';
+import { FileSystemRegistry } from './registry_drivers/file_system_registry';
+
+const DEFAULT_TEMPLATE_FILENAME = resolve(__dirname, 'migration_template.js');
+const DEFAULT_MIGRATIONS_DIR = './migrations';
 
 interface UpOptions {
   /**
@@ -55,7 +59,7 @@ export class Migr8 {
 
   /**
    * Callback that is executed to produce an argument that will be passed to
-   * migrations when they are being rollbacked.
+   * migrations when they are being rolledback.
    */
 
   downArg: DownArg;
@@ -63,7 +67,7 @@ export class Migr8 {
   /**
    * Create a new Migr8 instance.
    *
-   * @param arg Constructor arg.
+   * @param arg - Constructor arg.
    */
   constructor({
     migrationsDir,
@@ -72,28 +76,30 @@ export class Migr8 {
     upArg,
     downArg,
   }: Migr8Constructor) {
-    this.migrationsDir = path.resolve(migrationsDir);
-    this.templateFilename = path.resolve(templateFilename);
-    this.registry = registry;
-    this.upArg = upArg;
-    this.downArg = downArg;
+    this.migrationsDir = resolve(migrationsDir || DEFAULT_MIGRATIONS_DIR);
+    this.templateFilename = templateFilename
+      ? resolve(templateFilename)
+      : DEFAULT_TEMPLATE_FILENAME;
+    this.registry = registry || new FileSystemRegistry();
+    this.upArg = upArg || (async () => undefined);
+    this.downArg = downArg || (async () => undefined);
   }
 
   /**
    * Create a new migration file.
    *
-   * @param migrationName Name (not including the path) of the migration.
+   * @param migrationName - Name (not including the path) of the migration.
    * @returns Promise that resolves to the filename of the migration that was
    *     created.
    */
   async create(migrationName: string): Promise<string> {
     const filename = await this.createFilename(migrationName);
-    const template = fs.readFileSync(this.templateFilename, {
+    const template = readFileSync(this.templateFilename, {
       encoding: this.migrationFileEncoding,
       flag: 'r',
     });
 
-    fs.writeFileSync(filename, template, {
+    writeFileSync(filename, template, {
       encoding: this.migrationFileEncoding,
       flag: 'wx',
     });
@@ -104,7 +110,7 @@ export class Migr8 {
   /**
    * Run pending migrations.
    *
-   * @param options Options to adjust the operation.
+   * @param options - Options to adjust the operation.
    * @returns Results of the migration.
    */
   async up({ num }: UpOptions = {}): Promise<UppedMigrations> {
@@ -126,7 +132,7 @@ export class Migr8 {
           break;
         }
 
-        const filename = path.resolve(this.migrationsDir, name);
+        const filename = resolve(this.migrationsDir, name);
         const file = await import(filename);
         await file.up(arg);
 
@@ -155,7 +161,7 @@ export class Migr8 {
   /**
    * Rollback latest batch of executed migrations.
    *
-   * @param options Options to adjust the operation.
+   * @param options - Options to adjust the operation.
    * @returns Results of the rollback.
    */
   async down({ num }: DownOptions = {}): Promise<DownedMigrations> {
@@ -184,7 +190,7 @@ export class Migr8 {
           break;
         }
 
-        const filename = path.resolve(this.migrationsDir, migration.name);
+        const filename = resolve(this.migrationsDir, migration.name);
         const file = await import(filename);
         await file.down(arg);
 
@@ -209,7 +215,7 @@ export class Migr8 {
    *
    * Timezonze: UTC 00:00.
    *
-   * @param migrationName Name of the migration (without the path).
+   * @param migrationName - Name of the migration (without the path).
    * @returns A promise that resolves to the generated filename.
    */
   async createFilename(migrationName: string): Promise<string> {
@@ -224,7 +230,7 @@ export class Migr8 {
       extension = extensionMatch.pop() || '';
     }
 
-    return path.resolve(
+    return resolve(
       this.migrationsDir,
       `${timestamp}_${migrationName}${extension}`,
     );
@@ -236,12 +242,12 @@ export class Migr8 {
    * @returns Migration filenames (not including the path).
    */
   async getMigrations(): Promise<string[]> {
-    if (!fs.existsSync(this.migrationsDir)) {
+    if (!existsSync(this.migrationsDir)) {
       return [];
     }
-    return fs
-      .readdirSync(this.migrationsDir, { encoding: this.migrationFileEncoding })
-      .sort();
+    return readdirSync(this.migrationsDir, {
+      encoding: this.migrationFileEncoding,
+    }).sort();
   }
 
   /**

@@ -1,5 +1,6 @@
 node_modules/
-dist/
+d/
+tests/
 .eslintrc.js
-babel.config.js
+webpack.config.js
 migration_template.js

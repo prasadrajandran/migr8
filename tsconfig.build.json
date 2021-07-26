@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "declaration": true
+  },
+  "exclude": ["src/cli.ts", "src/cli/"]
+}

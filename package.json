@@ -28,7 +28,7 @@
     "migr8": "./d/cli.js"
   },
   "files": [
-    "d"
+    "d/"
   ],
   "scripts": {
     "lint": "eslint **/*.ts",

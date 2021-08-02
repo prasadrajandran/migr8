@@ -4,7 +4,7 @@ import { Registry } from '../interfaces/registry';
 import { ExecutedMigration } from '../interfaces/executed_migration';
 import { RegistryUpdate } from '../interfaces/registry_update';
 
-const DEFAULT_REGISTRY_FILENAME = './.migr8.registry.json';
+const DEFAULT_REGISTRY_FILENAME = './migr8.registry.json';
 
 export class FileSystemRegistry implements Registry {
   /**

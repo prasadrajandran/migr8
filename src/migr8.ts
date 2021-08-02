@@ -1,5 +1,11 @@
-import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
-import { resolve } from 'path';
+import {
+  readFileSync,
+  writeFileSync,
+  existsSync,
+  readdirSync,
+  mkdirSync,
+} from 'fs';
+import { resolve, dirname } from 'path';
 import { Migr8Constructor } from './interfaces/migr8_constructor';
 import { Registry } from './interfaces/registry';
 import { UppedMigrations } from './interfaces/upped_migrations';
@@ -98,6 +104,11 @@ export class Migr8 {
       encoding: this.migrationFileEncoding,
       flag: 'r',
     });
+
+    const migrationsDir = dirname(filename);
+    if (!existsSync(migrationsDir)) {
+      mkdirSync(migrationsDir, { recursive: true });
+    }
 
     writeFileSync(filename, template, {
       encoding: this.migrationFileEncoding,

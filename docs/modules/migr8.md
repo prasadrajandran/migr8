@@ -1,4 +1,4 @@
-[migr8 - v1.0.0-alpha.1](../README.md) / migr8
+[migr8 - v1.0.0-alpha.2](../README.md) / migr8
 
 # Module: migr8
 

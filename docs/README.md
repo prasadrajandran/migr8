@@ -1,4 +1,4 @@
-# migr8 - v1.0.0-alpha.1
+# migr8 - v1.0.0-alpha.2
 
 ## Table of contents
 
@@ -7,6 +7,7 @@
 - [interfaces/down_arg](modules/interfaces_down_arg.md)
 - [interfaces/downed_migrations](modules/interfaces_downed_migrations.md)
 - [interfaces/executed_migration](modules/interfaces_executed_migration.md)
+- [interfaces/file_system_registry_constructor](modules/interfaces_file_system_registry_constructor.md)
 - [interfaces/migr8_config](modules/interfaces_migr8_config.md)
 - [interfaces/migr8_constructor](modules/interfaces_migr8_constructor.md)
 - [interfaces/registry](modules/interfaces_registry.md)

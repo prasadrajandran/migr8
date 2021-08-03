@@ -1,4 +1,4 @@
-[migr8 - v1.0.0-alpha.1](../README.md) / [interfaces/up_arg](../modules/interfaces_up_arg.md) / UpArg
+[migr8 - v1.0.0-alpha.2](../README.md) / [interfaces/up_arg](../modules/interfaces_up_arg.md) / UpArg
 
 # Interface: UpArg
 
@@ -18,4 +18,4 @@ Resolves to a value that will be passed to `Migr8.up()`.
 
 #### Defined in
 
-[interfaces/up_arg.ts:5](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/interfaces/up_arg.ts#L5)
+[interfaces/up_arg.ts:5](https://github.com/prasadrajandran/migr8/blob/2cfde22/src/interfaces/up_arg.ts#L5)

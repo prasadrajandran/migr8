@@ -1,4 +1,4 @@
 node_modules/
 d/
 demo/migrations/
-demo/.migr8.registry.json
+demo/migr8.registry.json

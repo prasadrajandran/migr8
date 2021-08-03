@@ -3,8 +3,9 @@ import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { Registry } from '../interfaces/registry';
 import { ExecutedMigration } from '../interfaces/executed_migration';
 import { RegistryUpdate } from '../interfaces/registry_update';
+import { FileSystemRegistryConstructor } from '../interfaces/file_system_registry_constructor';
 
-const DEFAULT_REGISTRY_FILENAME = './.migr8.registry.json';
+const DEFAULT_REGISTRY_FILENAME = './migr8.registry.json';
 
 export class FileSystemRegistry implements Registry {
   /**
@@ -20,11 +21,14 @@ export class FileSystemRegistry implements Registry {
   /**
    * Construct a new File System Registry Driver.
    *
-   * @param registryFilename - Filename (including the path) of the registry
-   *     file.
+   * @param arg - Constructor arg.
    */
-  constructor(registryFilename?: string) {
+  constructor({
+    registryDir,
+    registryFilename,
+  }: FileSystemRegistryConstructor = {}) {
     this.registryFilename = resolve(
+      registryDir || process.cwd(),
       registryFilename || DEFAULT_REGISTRY_FILENAME,
     );
   }

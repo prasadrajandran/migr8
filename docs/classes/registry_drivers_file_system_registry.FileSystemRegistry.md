@@ -1,4 +1,4 @@
-[migr8 - v1.0.0-alpha.1](../README.md) / [registry_drivers/file_system_registry](../modules/registry_drivers_file_system_registry.md) / FileSystemRegistry
+[migr8 - v1.0.0-alpha.2](../README.md) / [registry_drivers/file_system_registry](../modules/registry_drivers_file_system_registry.md) / FileSystemRegistry
 
 # Class: FileSystemRegistry
 
@@ -28,19 +28,19 @@
 
 ### constructor
 
-• **new FileSystemRegistry**(`registryFilename?`)
+• **new FileSystemRegistry**(`__namedParameters?`)
 
 Construct a new File System Registry Driver.
 
 #### Parameters
 
-| Name                | Type     | Description                                         |
-| :------------------ | :------- | :-------------------------------------------------- |
-| `registryFilename?` | `string` | Filename (including the path) of the registry file. |
+| Name                | Type                                                                                                                          |
+| :------------------ | :---------------------------------------------------------------------------------------------------------------------------- |
+| `__namedParameters` | [`FileSystemRegistryConstructor`](../interfaces/interfaces_file_system_registry_constructor.FileSystemRegistryConstructor.md) |
 
 #### Defined in
 
-[registry_drivers/file_system_registry.ts:26](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/registry_drivers/file_system_registry.ts#L26)
+[registry_drivers/file_system_registry.ts:26](https://github.com/prasadrajandran/migr8/blob/2cfde22/src/registry_drivers/file_system_registry.ts#L26)
 
 ## Properties
 
@@ -52,7 +52,7 @@ File encoding of the registry.
 
 #### Defined in
 
-[registry_drivers/file_system_registry.ts:13](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/registry_drivers/file_system_registry.ts#L13)
+[registry_drivers/file_system_registry.ts:14](https://github.com/prasadrajandran/migr8/blob/2cfde22/src/registry_drivers/file_system_registry.ts#L14)
 
 ---
 
@@ -64,7 +64,7 @@ Filename (including the path) of the registry file.
 
 #### Defined in
 
-[registry_drivers/file_system_registry.ts:18](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/registry_drivers/file_system_registry.ts#L18)
+[registry_drivers/file_system_registry.ts:19](https://github.com/prasadrajandran/migr8/blob/2cfde22/src/registry_drivers/file_system_registry.ts#L19)
 
 ## Methods
 
@@ -84,7 +84,7 @@ Get migrations that have been migrated.
 
 #### Defined in
 
-[registry_drivers/file_system_registry.ts:35](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/registry_drivers/file_system_registry.ts#L35)
+[registry_drivers/file_system_registry.ts:39](https://github.com/prasadrajandran/migr8/blob/2cfde22/src/registry_drivers/file_system_registry.ts#L39)
 
 ---
 
@@ -110,4 +110,4 @@ Set executed migrations.
 
 #### Defined in
 
-[registry_drivers/file_system_registry.ts:52](https://github.com/prasadrajandran/migr8/blob/cdd896d/src/registry_drivers/file_system_registry.ts#L52)
+[registry_drivers/file_system_registry.ts:56](https://github.com/prasadrajandran/migr8/blob/2cfde22/src/registry_drivers/file_system_registry.ts#L56)

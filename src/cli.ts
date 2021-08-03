@@ -17,7 +17,7 @@ import {
   version as packageVersion,
 } from '../package.json';
 
-const DEFAULT_CONFIG_FILENAME = resolve(__dirname, './.migr8.config.js');
+const DEFAULT_CONFIG_FILENAME = resolve(__dirname, './migr8.config.js');
 
 const nOpt: OptSchema = {
   name: '-n',

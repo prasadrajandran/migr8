@@ -1,6 +1,8 @@
 # migr8
 
-Agnostic migration utility.
+Migr8 is a CLI utility to manage migrations. It supports custom registry drivers
+which allows it to be platform agnostic as new registry drivers could be used to
+add support for MySQL, PostgreSQL, etc.
 
 ## How Do I Use It?
 

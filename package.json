@@ -1,7 +1,7 @@
 {
   "name": "@prasadrajandran/migr8",
-  "version": "1.0.0-alpha.1",
-  "description": "Agnostic migration tool",
+  "version": "1.0.0-alpha.2",
+  "description": "Fully customizable CLI utility to manage migrations",
   "keywords": [
     "migrate",
     "migrations",

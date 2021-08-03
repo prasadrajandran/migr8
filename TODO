@@ -1,6 +1,2 @@
-- add babel
-- add tests
-- add help CLI command
-- add license
-- add keywords
-- confirm package name
+- add demo file with videos
+- add smoke test for CLI

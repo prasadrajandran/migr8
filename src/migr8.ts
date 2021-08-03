@@ -81,7 +81,7 @@ export class Migr8 {
     registry,
     upArg,
     downArg,
-  }: Migr8Constructor) {
+  }: Migr8Constructor = {}) {
     this.migrationsDir = resolve(migrationsDir || DEFAULT_MIGRATIONS_DIR);
     this.templateFilename = templateFilename
       ? resolve(templateFilename)

@@ -1,4 +1,4 @@
-[migr8 - v1.0.0-alpha.1](../README.md) / interfaces/migr8_constructor
+[migr8 - v1.0.0-alpha.2](../README.md) / interfaces/migr8_constructor
 
 # Module: interfaces/migr8_constructor
 

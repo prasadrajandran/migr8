@@ -9,12 +9,17 @@ npx sort-package-json
 echo "3. building..."
 npm run build
 
-echo "4. build docs..."
-rm -r docs/
-npm run build-docs
-# Remove the first two lines from README file. The title is duplicated for some
-# reason.
-tail -n +3 ./docs/README.md > ./docs/temp && mv ./docs/temp ./docs/README.md
+if [ "$1" == 'skip-docs' ]
+then
+  echo "(skipping) 4. build docs..."
+else
+  echo "4. build docs..."
+  rm -r docs/
+  npm run build-docs
+  # Remove the first two lines from README file. The title is duplicated for
+  # some reason.
+  tail -n +3 ./docs/README.md > ./docs/temp && mv ./docs/temp ./docs/README.md
+fi
 
 echo "5. linting..."
 npm run lint

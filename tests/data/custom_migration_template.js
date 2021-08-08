@@ -13,7 +13,7 @@ exports.up = async (arg) => {
 };
 
 /**
- * Rollback migration.
+ * Roll back migration.
  *
  * @param {any} arg
  * @returns {Promise<any>}

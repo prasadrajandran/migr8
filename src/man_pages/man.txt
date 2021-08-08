@@ -1,6 +1,6 @@
 Usage: migr8 [OPTION]... COMMAND
 
-Agnostic migration utility.
+Migr8 is a utility to manage migrations.
 
 OPTIONS
 --config=FILENAME  Location of the config file. If this option is not specified,

@@ -140,7 +140,7 @@ if (opts.has('--help')) {
       const padding = findMaxStrLength(migrations.map(({ batch }) => batch));
 
       for (const { name, batch } of migrations) {
-        const status = `Rolledback  Batch ${String(batch).padStart(
+        const status = `Rolled back  Batch ${String(batch).padStart(
           padding,
           '0',
         )}`;
@@ -149,7 +149,7 @@ if (opts.has('--help')) {
       if (err) {
         return err;
       } else if (!migrations.length) {
-        logger.inform('Nothing to rollback.');
+        logger.inform('Nothing to roll back.');
       }
 
       return true;

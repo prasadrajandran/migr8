@@ -1,4 +1,4 @@
 Usage: migr8 reset
 
-Rollback any executed migrations and then execute all the migrations. This is
-the equivalent of running "clear" followed by "up".
+Roll back any already executed migrations and then execute all the migrations.
+This is the equivalent of running "clear" followed by "up".

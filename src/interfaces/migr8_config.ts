@@ -33,7 +33,7 @@ export interface Migr8Config {
 
   /**
    * Function whose resolved value will be passed to migrations that are being
-   * rolledback. Will default to a function that resolves to undefined.
+   * rolled back. Will default to a function that resolves to undefined.
    */
   downArg?: Migr8Constructor['downArg'];
 }

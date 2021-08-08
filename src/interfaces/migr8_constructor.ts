@@ -27,7 +27,7 @@ export interface Migr8Constructor {
 
   /**
    * Callback that produces an argument for migrations when they are being
-   * rolledback.
+   * rolled back.
    */
   downArg?: DownArg;
 }

@@ -26,7 +26,7 @@ interface UpOptions {
 
 interface DownOptions {
   /**
-   * The maximum number of migratons to rollback.
+   * The maximum number of migratons to roll back.
    */
   num?: number;
 }
@@ -170,7 +170,7 @@ export class Migr8 {
   }
 
   /**
-   * Rollback latest batch of executed migrations.
+   * Roll back latest batch of executed migrations.
    *
    * @param options - Options to adjust the operation.
    * @returns Results of the rollback.

@@ -6,6 +6,7 @@ import {
   mkdirSync,
 } from 'fs';
 import { resolve, dirname } from 'path';
+import { sanitizeFilename } from './helpers/sanitize_filename';
 import { Migr8Constructor } from './interfaces/migr8_constructor';
 import { Registry } from './interfaces/registry';
 import { UppedMigrations } from './interfaces/upped_migrations';
@@ -243,7 +244,7 @@ export class Migr8 {
 
     return resolve(
       this.migrationsDir,
-      `${timestamp}_${migrationName}${extension}`,
+      `${sanitizeFilename(`${timestamp}_${migrationName}${extension}`)}`,
     );
   }
 

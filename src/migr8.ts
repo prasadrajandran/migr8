@@ -6,6 +6,7 @@ import {
   mkdirSync,
 } from 'fs';
 import { resolve, dirname } from 'path';
+import { sanitizeFilename } from './helpers/sanitize_filename';
 import { Migr8Constructor } from './interfaces/migr8_constructor';
 import { Registry } from './interfaces/registry';
 import { UppedMigrations } from './interfaces/upped_migrations';
@@ -26,7 +27,7 @@ interface UpOptions {
 
 interface DownOptions {
   /**
-   * The maximum number of migratons to rollback.
+   * The maximum number of migratons to roll back.
    */
   num?: number;
 }
@@ -144,7 +145,7 @@ export class Migr8 {
         }
 
         const filename = resolve(this.migrationsDir, name);
-        const file = await import(filename);
+        const file = await import(/* webpackIgnore: true */ filename);
         await file.up(arg);
 
         const migration = {
@@ -170,7 +171,7 @@ export class Migr8 {
   }
 
   /**
-   * Rollback latest batch of executed migrations.
+   * Roll back latest batch of executed migrations.
    *
    * @param options - Options to adjust the operation.
    * @returns Results of the rollback.
@@ -202,7 +203,7 @@ export class Migr8 {
         }
 
         const filename = resolve(this.migrationsDir, migration.name);
-        const file = await import(filename);
+        const file = await import(/* webpackIgnore: true */ filename);
         await file.down(arg);
 
         executedMigrations.pop();
@@ -243,7 +244,7 @@ export class Migr8 {
 
     return resolve(
       this.migrationsDir,
-      `${timestamp}_${migrationName}${extension}`,
+      `${sanitizeFilename(`${timestamp}_${migrationName}${extension}`)}`,
     );
   }
 

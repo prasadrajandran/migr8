@@ -4,28 +4,20 @@ const { Migr8 } = require('../d/migr8');
 const {
   FileSystemRegistry,
 } = require('../d/registry_drivers/file_system_registry');
-
-const DATA_DIR = path.resolve(__dirname, 'data');
-const WORKSPACE_DIR = path.resolve(__dirname, '_workspace_');
-const MIGRATIONS_DIR = path.resolve(WORKSPACE_DIR, 'test_migrations');
-
-const deleteTestWorkspaceDir = () => {
-  if (fs.existsSync(WORKSPACE_DIR)) {
-    fs.rmSync(WORKSPACE_DIR, { recursive: true });
-  }
-};
-
-const createTestWorkspaceDir = () => {
-  if (!fs.existsSync(WORKSPACE_DIR)) {
-    fs.mkdirSync(WORKSPACE_DIR);
-  }
-};
-
-const deleteMigrationsDir = () => {
-  if (fs.existsSync(MIGRATIONS_DIR)) {
-    fs.rmSync(MIGRATIONS_DIR, { recursive: true });
-  }
-};
+const { RESERVED_CHARACTERS } = require('../d/helpers/sanitize_filename');
+const {
+  DATA_DIR,
+  DATA_TOTAL_MIGRATIONS,
+  DATA_MIGRATION_OBJ_STATES,
+  WORKSPACE_DIR,
+  WORKSPACE_MIGRATIONS_DIR,
+  deleteTestWorkspaceDir,
+  createTestWorkspaceDir,
+  deleteWorkspaceMigrationsDir,
+  writeTestMigrationObj,
+  readTestMigrationObj,
+  resetTestMigrationObj,
+} = require('./helpers/common');
 
 describe('constructor()', () => {
   test('constructor args are optional', () => {
@@ -64,11 +56,12 @@ describe('constructor()', () => {
 });
 
 describe('create()', () => {
-  beforeEach(deleteMigrationsDir);
+  beforeEach(deleteWorkspaceMigrationsDir);
+  afterAll(deleteTestWorkspaceDir);
 
   test('returns a promise that resolves to a filename', async () => {
     const migr8 = new Migr8({
-      migrationsDir: MIGRATIONS_DIR,
+      migrationsDir: WORKSPACE_MIGRATIONS_DIR,
     });
 
     const names = ['something', 'else', 'dummy'];
@@ -105,103 +98,85 @@ describe('create()', () => {
       fs.readFileSync(templateFilename, { encoding: 'utf8' }),
     );
   });
-
-  afterAll(deleteTestWorkspaceDir);
 });
 
 describe('up() and down()', () => {
-  const TOTAL_MIGRATIONS = 4;
-  const TEST_OBJ_FILENAME = path.resolve(WORKSPACE_DIR, 'test_object.json');
-  const testObjStates = [
-    { x: 0 }, // Initial object state
-    { x: 0, a: 5 }, // After migration 1
-    { x: 0, b: 5 }, // After migration 2
-    { x: 0, b: 5, r: 'r' }, // After migration 3
-    { x: 0, b: 5, r: 'r', c: true }, // After migration 4
-  ];
-
-  const readTestObj = () => {
-    return JSON.parse(
-      fs.readFileSync(TEST_OBJ_FILENAME, {
-        encoding: 'utf8',
-        flag: 'r',
-      }),
-    );
-  };
-
-  const writeTestObj = (data) => {
-    fs.writeFileSync(TEST_OBJ_FILENAME, JSON.stringify(data), {
-      encoding: 'utf8',
-      flag: 'w',
-    });
-  };
-
-  const resetTestObj = () => {
-    writeTestObj(testObjStates[0]);
-  };
-
   const migr8 = new Migr8({
     migrationsDir: path.resolve(DATA_DIR, 'migrations'),
     registry: new FileSystemRegistry({ registryDir: WORKSPACE_DIR }),
-    upArg: () => ({ readTestObj, writeTestObj }),
-    downArg: () => ({ readTestObj, writeTestObj }),
+    upArg: () => ({ readTestMigrationObj, writeTestMigrationObj }),
+    downArg: () => ({ readTestMigrationObj, writeTestMigrationObj }),
   });
 
   beforeAll(() => {
     deleteTestWorkspaceDir();
     createTestWorkspaceDir();
-    resetTestObj();
+    resetTestMigrationObj();
   });
 
   beforeEach(async () => {
-    while ((await migr8.getPendingMigrations()).length !== TOTAL_MIGRATIONS) {
+    while (
+      (await migr8.getPendingMigrations()).length !== DATA_TOTAL_MIGRATIONS
+    ) {
       await migr8.down();
     }
-    expect((await migr8.getPendingMigrations()).length).toBe(TOTAL_MIGRATIONS);
-    expect(readTestObj()).toStrictEqual(testObjStates[0]);
+    expect((await migr8.getPendingMigrations()).length).toBe(
+      DATA_TOTAL_MIGRATIONS,
+    );
+    expect(readTestMigrationObj()).toStrictEqual(DATA_MIGRATION_OBJ_STATES[0]);
   });
+
+  afterAll(deleteTestWorkspaceDir);
 
   describe('up()', () => {
     test('runs all migrations successfully', async () => {
       await migr8.up();
       expect((await migr8.getPendingMigrations()).length).toBe(0);
-      expect(readTestObj()).toStrictEqual(testObjStates[TOTAL_MIGRATIONS]);
+      expect(readTestMigrationObj()).toStrictEqual(
+        DATA_MIGRATION_OBJ_STATES[DATA_TOTAL_MIGRATIONS],
+      );
     });
 
     [1, 2, 3, 4].forEach((num) => {
       test(`runs migration(s) 1 to ${num} successfully`, async () => {
         await migr8.up({ num });
         expect((await migr8.getPendingMigrations()).length).toBe(
-          TOTAL_MIGRATIONS - num,
+          DATA_TOTAL_MIGRATIONS - num,
         );
-        expect(readTestObj()).toStrictEqual(testObjStates[num]);
+        expect(readTestMigrationObj()).toStrictEqual(
+          DATA_MIGRATION_OBJ_STATES[num],
+        );
       });
     });
   });
 
   describe('down()', () => {
-    test('rolledback all migrations successfully', async () => {
+    test('rolled back all migrations successfully', async () => {
       await migr8.up();
-      expect(readTestObj()).toStrictEqual(testObjStates[TOTAL_MIGRATIONS]);
+      expect(readTestMigrationObj()).toStrictEqual(
+        DATA_MIGRATION_OBJ_STATES[DATA_TOTAL_MIGRATIONS],
+      );
 
       await migr8.down();
-      expect(readTestObj()).toStrictEqual(testObjStates[0]);
+      expect(readTestMigrationObj()).toStrictEqual(
+        DATA_MIGRATION_OBJ_STATES[0],
+      );
     });
 
     [4, 3, 2, 1].forEach((num) => {
-      test(`rolledback migrations ${num} to 4`, async () => {
+      test(`rolled back migrations ${num} to 4`, async () => {
         await migr8.up();
-        expect(readTestObj()).toStrictEqual(testObjStates[TOTAL_MIGRATIONS]);
+        expect(readTestMigrationObj()).toStrictEqual(
+          DATA_MIGRATION_OBJ_STATES[DATA_TOTAL_MIGRATIONS],
+        );
 
         await migr8.down({ num });
-        expect(readTestObj()).toStrictEqual(
-          testObjStates[TOTAL_MIGRATIONS - num],
+        expect(readTestMigrationObj()).toStrictEqual(
+          DATA_MIGRATION_OBJ_STATES[DATA_TOTAL_MIGRATIONS - num],
         );
       });
     });
   });
-
-  afterAll(deleteTestWorkspaceDir);
 });
 
 describe('getMigrations()', () => {
@@ -212,8 +187,9 @@ describe('getMigrations()', () => {
 });
 
 describe('createFilename()', () => {
+  const migr8 = new Migr8();
+
   test('returns a promise that resolves into a filename', () => {
-    const migr8 = new Migr8();
     const name = 'something';
     const timestamp = new Date()
       .toISOString()
@@ -223,5 +199,11 @@ describe('createFilename()', () => {
     return expect(migr8.createFilename(name)).resolves.toBe(
       path.resolve(migr8.migrationsDir, expectedFilename),
     );
+  });
+
+  RESERVED_CHARACTERS.forEach((char) => {
+    test(`sanitizes "${char}" from the migration's filename`, () => {
+      return expect(migr8.createFilename(char)).resolves.toMatch(/_\.js$/);
+    });
   });
 });

@@ -1,6 +1,6 @@
 Usage: migr8 [OPTION]... COMMAND
 
-Agnostic migration utility.
+Migr8 is a utility to manage migrations.
 
 OPTIONS
 --config=FILENAME  Location of the config file. If this option is not specified,
@@ -12,14 +12,14 @@ create             Create one or more migration files.
 
 up                 Execute pending migrations.
 
-down               Rollback a batch of executed migrations.
+down               Roll back a batch of executed migrations.
 
 list               List all migrations.
 
-clear              Rollback all executed migrations.
+clear              Roll back all executed migrations.
 
-reset              Rollback any executed migrations and then execute all the
-                   migrations. This is the equivalent of running "clear"
+reset              Roll back any already executed migrations and then execute
+                   all the migrations. This is the equivalent of running "clear"
                    followed by "up".
 
 REPOSITORY

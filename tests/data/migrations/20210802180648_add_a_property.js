@@ -4,20 +4,20 @@
  * @param {Object} arg
  * @returns {Promise<void>}
  */
-exports.up = async ({ readTestObj, writeTestObj }) => {
-  const testObj = readTestObj();
+exports.up = async ({ readTestMigrationObj, writeTestMigrationObj }) => {
+  const testObj = readTestMigrationObj();
   testObj.a = 5;
-  writeTestObj(testObj);
+  writeTestMigrationObj(testObj);
 };
 
 /**
- * Rollback migration.
+ * Roll back migration.
  *
  * @param {Object} arg
  * @returns {Promise<void>}
  */
-exports.down = async ({ readTestObj, writeTestObj }) => {
-  const testObj = readTestObj();
+exports.down = async ({ readTestMigrationObj, writeTestMigrationObj }) => {
+  const testObj = readTestMigrationObj();
   delete testObj.a;
-  writeTestObj(testObj);
+  writeTestMigrationObj(testObj);
 };

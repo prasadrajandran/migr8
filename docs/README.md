@@ -1,9 +1,10 @@
-# migr8 - v1.0.0-alpha.2
+# migr8 - v1.0.0-beta.1
 
 ## Table of contents
 
 ### Modules
 
+- [helpers/sanitize_filename](modules/helpers_sanitize_filename.md)
 - [interfaces/down_arg](modules/interfaces_down_arg.md)
 - [interfaces/downed_migrations](modules/interfaces_downed_migrations.md)
 - [interfaces/executed_migration](modules/interfaces_executed_migration.md)

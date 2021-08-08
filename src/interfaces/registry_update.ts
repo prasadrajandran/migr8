@@ -12,7 +12,7 @@ export interface RegistryUpdate {
   migrations: ExecutedMigration[];
 
   /**
-   * Migration that was either executed or rolledback.
+   * Migration that was either executed or rolled back.
    */
   migration: ExecutedMigration;
 }

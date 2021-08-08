@@ -2,7 +2,7 @@ import { ExecutedMigration } from './executed_migration';
 
 export interface DownedMigrations {
   /**
-   * Migrations that were rolledback.
+   * Migrations that were rolled back.
    */
   migrations: ExecutedMigration[];
 

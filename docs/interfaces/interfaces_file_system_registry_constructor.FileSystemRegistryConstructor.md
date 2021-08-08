@@ -1,4 +1,4 @@
-[migr8 - v1.0.0-alpha.2](../README.md) / [interfaces/file_system_registry_constructor](../modules/interfaces_file_system_registry_constructor.md) / FileSystemRegistryConstructor
+[migr8 - v1.0.0-beta.1](../README.md) / [interfaces/file_system_registry_constructor](../modules/interfaces_file_system_registry_constructor.md) / FileSystemRegistryConstructor
 
 # Interface: FileSystemRegistryConstructor
 
@@ -22,7 +22,7 @@ directory.
 
 #### Defined in
 
-[interfaces/file_system_registry_constructor.ts:6](https://github.com/prasadrajandran/migr8/blob/2cfde22/src/interfaces/file_system_registry_constructor.ts#L6)
+[interfaces/file_system_registry_constructor.ts:6](https://github.com/prasadrajandran/migr8/blob/560fe49/src/interfaces/file_system_registry_constructor.ts#L6)
 
 ---
 
@@ -35,4 +35,4 @@ Filename (not including the path) of the registry file. Defaults to
 
 #### Defined in
 
-[interfaces/file_system_registry_constructor.ts:12](https://github.com/prasadrajandran/migr8/blob/2cfde22/src/interfaces/file_system_registry_constructor.ts#L12)
+[interfaces/file_system_registry_constructor.ts:12](https://github.com/prasadrajandran/migr8/blob/560fe49/src/interfaces/file_system_registry_constructor.ts#L12)

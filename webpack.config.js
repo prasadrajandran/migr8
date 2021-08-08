@@ -19,6 +19,12 @@ module.exports = {
     }),
   ],
   module: {
+    parser: {
+      javascript: {
+        // https://github.com/webpack/webpack/issues/4175#issuecomment-770769441
+        commonjsMagicComments: true,
+      },
+    },
     rules: [
       {
         test: /\.ts$/,

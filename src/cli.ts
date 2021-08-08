@@ -42,7 +42,7 @@ const { opts, cmds, args, errors } = getopts({
       argFilter: (arg) => {
         const filename = resolve(arg);
         if (existsSync(filename)) {
-          return require(filename);
+          return require(/* webpackIgnore: true */ filename);
         } else {
           throw new Error(`${filename} does not exist`);
         }
@@ -98,7 +98,7 @@ if (opts.has('--help')) {
     if (opts.has('--config')) {
       return opts.get('--config') as Migr8Config;
     } else if (existsSync(DEFAULT_CONFIG_FILENAME)) {
-      return require(DEFAULT_CONFIG_FILENAME);
+      return require(/* webpackIgnore: true */ DEFAULT_CONFIG_FILENAME);
     }
   })();
   const migr8 = new (config?.Migr8 || Migr8)(config || {});

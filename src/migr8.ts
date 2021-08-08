@@ -144,7 +144,7 @@ export class Migr8 {
         }
 
         const filename = resolve(this.migrationsDir, name);
-        const file = await import(filename);
+        const file = await import(/* webpackIgnore: true */ filename);
         await file.up(arg);
 
         const migration = {
@@ -202,7 +202,7 @@ export class Migr8 {
         }
 
         const filename = resolve(this.migrationsDir, migration.name);
-        const file = await import(filename);
+        const file = await import(/* webpackIgnore: true */ filename);
         await file.down(arg);
 
         executedMigrations.pop();

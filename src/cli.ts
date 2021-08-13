@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import { existsSync } from 'fs';
-import { getopts, OptSchema } from '@prasadrajandran/getopts';
+import { getopts } from '@prasadrajandran/getopts';
+import { OptSchema } from '@prasadrajandran/getopts/d/interfaces/schema';
 import { Migr8 } from './migr8';
 import * as logger from './cli/helpers/logger';
 import { Migr8Config } from './interfaces/migr8_config';

@@ -15,7 +15,7 @@ const {
   resetTestMigrationObj,
 } = require('./helpers/common');
 
-const CLI = path.resolve(__dirname, '../d/cli.js');
+const CLI = path.resolve(__dirname, '../dist/cli.js');
 const COLOR_CODES = /\x1b\[\d{1,2}m/g;
 
 const getManPage = (cmd = '') => {
@@ -182,7 +182,7 @@ describe('commands', () => {
         { encoding: 'utf8' },
       );
       const templateContents = fs.readFileSync(
-        path.resolve(__dirname, '../d/migration_template.js'),
+        path.resolve(__dirname, '../dist/migration_template.js'),
         { encoding: 'utf8' },
       );
       expect(migration).toContain(`${name}.js`);

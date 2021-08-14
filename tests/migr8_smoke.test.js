@@ -1,10 +1,10 @@
 const path = require('path');
 const fs = require('fs');
-const { Migr8 } = require('../d/migr8');
+const { Migr8 } = require('../dist/migr8');
 const {
   FileSystemRegistry,
-} = require('../d/registry_drivers/file_system_registry');
-const { RESERVED_CHARACTERS } = require('../d/helpers/sanitize_filename');
+} = require('../dist/registry_drivers/file_system_registry');
+const { RESERVED_CHARACTERS } = require('../dist/helpers/sanitize_filename');
 const {
   DATA_DIR,
   DATA_TOTAL_MIGRATIONS,

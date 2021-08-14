@@ -2,7 +2,7 @@ const {
   RESERVED_CHARACTERS,
   RESERVED_WINDOWS_FILENAMES,
   sanitizeFilename,
-} = require('../d/helpers/sanitize_filename');
+} = require('../dist/helpers/sanitize_filename');
 
 const REPLACEMENT = '_';
 

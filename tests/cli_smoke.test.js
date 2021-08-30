@@ -223,7 +223,7 @@ describe('commands', () => {
     });
 
     test('requires a name for the migration', () => {
-      expect(cli('create').stderr).toContain('At least 1 argument expected');
+      expect(cli('create').stderr).toContain('Argument expected');
     });
   });
 

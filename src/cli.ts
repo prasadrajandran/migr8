@@ -1,7 +1,7 @@
 import { resolve } from 'path';
 import { existsSync } from 'fs';
 import { getopts } from '@prasadrajandran/getopts';
-import { OptSchema } from '@prasadrajandran/getopts/d/interfaces/schema';
+import { OptSchema } from '@prasadrajandran/getopts/dist/interfaces/schema';
 import { Migr8 } from './migr8';
 import * as logger from './cli/helpers/logger';
 import { Migr8Config } from './interfaces/migr8_config';
@@ -20,79 +20,92 @@ import {
 
 const DEFAULT_CONFIG_FILENAME = resolve(__dirname, './migr8.config.js');
 
-const nOpt: OptSchema = {
-  name: '-n',
-  longName: '--num',
-  arg: 'required',
-  argFilter: (arg: string) => {
-    const n = Number(arg);
-    if (!Number.isFinite(n)) {
-      throw new Error(`${arg} is not a valid number`);
-    }
-    return n;
+const numOpt: OptSchema = {
+  name: ['-n', '--num'],
+  arg: {
+    required: true,
+    filter: (arg: string) => {
+      const n = Number(arg);
+      if (!Number.isFinite(n)) {
+        throw new Error(`${arg} is not a valid number`);
+      }
+      return n;
+    },
   },
 };
 
-const { opts, cmds, args, errors } = getopts({
-  opts: [
-    { longName: '--help' },
-    { longName: '--version' },
-    {
-      longName: '--config',
-      arg: 'required',
-      argFilter: (arg) => {
-        const filename = resolve(arg);
-        if (existsSync(filename)) {
-          return require(/* webpackIgnore: true */ filename);
-        } else {
-          throw new Error(`${filename} does not exist`);
-        }
+const { opts, cmds, args } = getopts(
+  {
+    opts: [
+      { name: '--help' },
+      { name: '--version' },
+      {
+        name: '--config',
+        arg: {
+          required: true,
+          filter: (arg) => {
+            const filename = resolve(arg);
+            if (existsSync(filename)) {
+              return require(/* webpackIgnore: true */ filename);
+            } else {
+              throw new Error(`${filename} does not exist`);
+            }
+          },
+        },
+      },
+    ],
+    cmds: [
+      { name: 'create', args: { min: 1 } },
+      { name: 'up', opts: [numOpt], args: { max: 0 } },
+      { name: 'down', opts: [numOpt], args: { max: 0 } },
+      { name: 'list', args: { max: 0 } },
+      { name: 'clear', args: { max: 0 } },
+      { name: 'reset', args: { max: 0 } },
+    ],
+  },
+  {
+    hooks: {
+      helpOpt: {
+        callback: ({ cmds }) => {
+          switch (cmds[0]) {
+            case 'create':
+              logger.inform(createMan);
+              break;
+            case 'up':
+              logger.inform(upMan);
+              break;
+            case 'down':
+              logger.inform(downMan);
+              break;
+            case 'list':
+              logger.inform(listMan);
+              break;
+            case 'clear':
+              logger.inform(clearMan);
+              break;
+            case 'reset':
+              logger.inform(resetMan);
+              break;
+            default:
+              logger.inform(man);
+          }
+        },
+      },
+      versionOpt: {
+        callback: () => {
+          logger.inform(`${packageName}: ${packageVersion}`);
+        },
+      },
+      parserErrors: {
+        callback: ({ errors }) => {
+          for (const { message } of errors) {
+            logger.scream(`${packageName}: ${message}`);
+          }
+        },
       },
     },
-  ],
-  cmds: [
-    { name: 'create', minArgs: 1 },
-    { name: 'up', opts: [nOpt] },
-    { name: 'down', opts: [nOpt] },
-    { name: 'list' },
-    { name: 'clear' },
-    { name: 'reset' },
-  ],
-});
-
-if (opts.has('--help')) {
-  switch (cmds[0]) {
-    case 'create':
-      logger.inform(createMan);
-      break;
-    case 'up':
-      logger.inform(upMan);
-      break;
-    case 'down':
-      logger.inform(downMan);
-      break;
-    case 'list':
-      logger.inform(listMan);
-      break;
-    case 'clear':
-      logger.inform(clearMan);
-      break;
-    case 'reset':
-      logger.inform(resetMan);
-      break;
-    default:
-      logger.inform(man);
-  }
-  process.exit(0);
-} else if (opts.has('--version')) {
-  logger.inform(`${packageName}: ${packageVersion}`);
-  process.exit(0);
-} else if (errors.length) {
-  for (const { name, message } of errors) {
-    logger.scream(`${packageName}: (${name}) ${message}`);
-  }
-  process.exit(1);
-}
+  },
+);
 
 (async () => {
   const config = ((): Migr8Config | undefined => {
@@ -112,8 +125,8 @@ if (opts.has('--help')) {
       return true;
     },
     up: async () => {
-      const num = (opts.get(nOpt.name as string) ||
-        opts.get(nOpt.longName as string)) as number;
+      const [optName, optLongName] = numOpt.name;
+      const num = (opts.get(optName) || opts.get(optLongName)) as number;
       const { migrations, err } = await migr8.up({ num });
       const padding = findMaxStrLength(migrations.map(({ batch }) => batch));
 
@@ -134,9 +147,8 @@ if (opts.has('--help')) {
       return true;
     },
     down: async (n?: number) => {
-      const num = (n ||
-        opts.get(nOpt.name as string) ||
-        opts.get(nOpt.longName as string)) as number;
+      const [optName, optLongName] = numOpt.name;
+      const num = n || ((opts.get(optName) || opts.get(optLongName)) as number);
       const { migrations, err } = await migr8.down({ num });
       const padding = findMaxStrLength(migrations.map(({ batch }) => batch));
 

@@ -125,8 +125,7 @@ const { opts, cmds, args } = getopts(
       return true;
     },
     up: async () => {
-      const [optName, optLongName] = numOpt.name;
-      const num = (opts.get(optName) || opts.get(optLongName)) as number;
+      const num = opts.get(numOpt.name) as number;
       const { migrations, err } = await migr8.up({ num });
       const padding = findMaxStrLength(migrations.map(({ batch }) => batch));
 
@@ -147,8 +146,7 @@ const { opts, cmds, args } = getopts(
       return true;
     },
     down: async (n?: number) => {
-      const [optName, optLongName] = numOpt.name;
-      const num = n || ((opts.get(optName) || opts.get(optLongName)) as number);
+      const num = n || (opts.get(numOpt.name) as number);
       const { migrations, err } = await migr8.down({ num });
       const padding = findMaxStrLength(migrations.map(({ batch }) => batch));
 

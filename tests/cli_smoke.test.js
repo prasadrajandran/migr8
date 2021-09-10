@@ -223,7 +223,7 @@ describe('commands', () => {
     });
 
     test('requires a name for the migration', () => {
-      expect(cli('create').stderr).toContain('Argument expected');
+      expect(cli('create').stderr).toContain('argument expected');
     });
   });
 
@@ -279,7 +279,7 @@ describe('commands', () => {
         expect(
           cli(`--config=../data/migr8.config.js up ${opt}`, WORKSPACE_DIR)
             .stderr,
-        ).toContain('requires an argument');
+        ).toContain('expects an argument');
       });
     });
   });
@@ -398,7 +398,7 @@ describe('commands', () => {
         expect(
           cli(`--config=../data/migr8.config.js down ${opt}`, WORKSPACE_DIR)
             .stderr,
-        ).toContain('requires an argument');
+        ).toContain('expects an argument');
       });
     });
   });

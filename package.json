@@ -40,7 +40,7 @@
     "build-and-test": "npm run build && npm run test"
   },
   "devDependencies": {
-    "@prasadrajandran/getopts": "^3.1.0",
+    "@prasadrajandran/getopts": "^4.0.0",
     "@tsconfig/node10": "^1.0.8",
     "@types/jest": "^27.0.1",
     "@types/node": "^14.17.14",

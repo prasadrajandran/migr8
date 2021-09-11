@@ -1,4 +1,4 @@
-[migr8 - v1.0.0-beta.1](../README.md) / [registry_drivers/file_system_registry](../modules/registry_drivers_file_system_registry.md) / FileSystemRegistry
+[migr8 - v1.0.0](../README.md) / [registry_drivers/file_system_registry](../modules/registry_drivers_file_system_registry.md) / FileSystemRegistry
 
 # Class: FileSystemRegistry
 
@@ -40,7 +40,7 @@ Construct a new File System Registry Driver.
 
 #### Defined in
 
-[registry_drivers/file_system_registry.ts:26](https://github.com/prasadrajandran/migr8/blob/560fe49/src/registry_drivers/file_system_registry.ts#L26)
+[registry_drivers/file_system_registry.ts:26](https://github.com/prasadrajandran/migr8/blob/5654936/src/registry_drivers/file_system_registry.ts#L26)
 
 ## Properties
 
@@ -52,7 +52,7 @@ File encoding of the registry.
 
 #### Defined in
 
-[registry_drivers/file_system_registry.ts:14](https://github.com/prasadrajandran/migr8/blob/560fe49/src/registry_drivers/file_system_registry.ts#L14)
+[registry_drivers/file_system_registry.ts:14](https://github.com/prasadrajandran/migr8/blob/5654936/src/registry_drivers/file_system_registry.ts#L14)
 
 ---
 
@@ -64,7 +64,7 @@ Filename (including the path) of the registry file.
 
 #### Defined in
 
-[registry_drivers/file_system_registry.ts:19](https://github.com/prasadrajandran/migr8/blob/560fe49/src/registry_drivers/file_system_registry.ts#L19)
+[registry_drivers/file_system_registry.ts:19](https://github.com/prasadrajandran/migr8/blob/5654936/src/registry_drivers/file_system_registry.ts#L19)
 
 ## Methods
 
@@ -84,7 +84,7 @@ Get migrations that have been migrated.
 
 #### Defined in
 
-[registry_drivers/file_system_registry.ts:39](https://github.com/prasadrajandran/migr8/blob/560fe49/src/registry_drivers/file_system_registry.ts#L39)
+[registry_drivers/file_system_registry.ts:39](https://github.com/prasadrajandran/migr8/blob/5654936/src/registry_drivers/file_system_registry.ts#L39)
 
 ---
 
@@ -110,4 +110,4 @@ Set executed migrations.
 
 #### Defined in
 
-[registry_drivers/file_system_registry.ts:56](https://github.com/prasadrajandran/migr8/blob/560fe49/src/registry_drivers/file_system_registry.ts#L56)
+[registry_drivers/file_system_registry.ts:56](https://github.com/prasadrajandran/migr8/blob/5654936/src/registry_drivers/file_system_registry.ts#L56)

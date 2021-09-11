@@ -1,4 +1,4 @@
-[migr8 - v1.0.0-beta.1](../README.md) / interfaces/up_arg
+[migr8 - v1.0.0](../README.md) / interfaces/up_arg
 
 # Module: interfaces/up_arg
 

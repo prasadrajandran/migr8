@@ -1,4 +1,4 @@
-[migr8 - v1.0.0-beta.1](../README.md) / [interfaces/executed_migration](../modules/interfaces_executed_migration.md) / ExecutedMigration
+[migr8 - v1.0.0](../README.md) / [interfaces/executed_migration](../modules/interfaces_executed_migration.md) / ExecutedMigration
 
 # Interface: ExecutedMigration
 
@@ -22,7 +22,7 @@ Batch the executed migration belongs to.
 
 #### Defined in
 
-[interfaces/executed_migration.ts:10](https://github.com/prasadrajandran/migr8/blob/560fe49/src/interfaces/executed_migration.ts#L10)
+[interfaces/executed_migration.ts:10](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/executed_migration.ts#L10)
 
 ---
 
@@ -34,7 +34,7 @@ Unix timestamp of when the migration was executed.
 
 #### Defined in
 
-[interfaces/executed_migration.ts:15](https://github.com/prasadrajandran/migr8/blob/560fe49/src/interfaces/executed_migration.ts#L15)
+[interfaces/executed_migration.ts:15](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/executed_migration.ts#L15)
 
 ---
 
@@ -46,4 +46,4 @@ Name of the migration.
 
 #### Defined in
 
-[interfaces/executed_migration.ts:5](https://github.com/prasadrajandran/migr8/blob/560fe49/src/interfaces/executed_migration.ts#L5)
+[interfaces/executed_migration.ts:5](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/executed_migration.ts#L5)

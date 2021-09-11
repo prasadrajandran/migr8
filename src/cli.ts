@@ -20,6 +20,26 @@ import {
 
 const DEFAULT_CONFIG_FILENAME = resolve(__dirname, './migr8.config.js');
 
+const CMDS = {
+  CREATE: 'create',
+  UP: 'up',
+  DOWN: 'down',
+  LIST: 'list',
+  CLEAR: 'clear',
+  RESET: 'reset',
+} as const;
+
+type CMD = typeof CMDS[keyof typeof CMDS];
+
+const CMD_MANS = {
+  create: createMan,
+  up: upMan,
+  down: downMan,
+  list: listMan,
+  clear: clearMan,
+  reset: resetMan,
+} as const;
+
 const numOpt: OptSchema = {
   name: ['-n', '--num'],
   arg: {
@@ -55,40 +75,20 @@ const { opts, cmds, args } = getopts(
       },
     ],
     cmds: [
-      { name: 'create', args: { min: 1 } },
-      { name: 'up', opts: [numOpt], args: { max: 0 } },
-      { name: 'down', opts: [numOpt], args: { max: 0 } },
-      { name: 'list', args: { max: 0 } },
-      { name: 'clear', args: { max: 0 } },
-      { name: 'reset', args: { max: 0 } },
+      { name: CMDS.CREATE, args: { min: 1 } },
+      { name: CMDS.UP, opts: [numOpt], args: { max: 0 } },
+      { name: CMDS.DOWN, opts: [numOpt], args: { max: 0 } },
+      { name: CMDS.LIST, args: { max: 0 } },
+      { name: CMDS.CLEAR, args: { max: 0 } },
+      { name: CMDS.RESET, args: { max: 0 } },
     ],
   },
   {
     hooks: {
       helpOpt: {
         callback: ({ cmds }) => {
-          switch (cmds[0]) {
-            case 'create':
-              logger.inform(createMan);
-              break;
-            case 'up':
-              logger.inform(upMan);
-              break;
-            case 'down':
-              logger.inform(downMan);
-              break;
-            case 'list':
-              logger.inform(listMan);
-              break;
-            case 'clear':
-              logger.inform(clearMan);
-              break;
-            case 'reset':
-              logger.inform(resetMan);
-              break;
-            default:
-              logger.inform(man);
-          }
+          const cmd = cmds[0] as CMD | undefined;
+          logger.inform(cmd ? CMD_MANS[cmd] : man);
         },
       },
       versionOpt: {
@@ -205,7 +205,7 @@ const { opts, cmds, args } = getopts(
     },
   };
 
-  const cmd = cmds[0] as 'create' | 'up' | 'down' | 'list' | 'clear' | 'reset';
+  const cmd = cmds[0] as CMD;
 
   try {
     const result = await cli[cmd]();

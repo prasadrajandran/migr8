@@ -46,8 +46,10 @@ const numOpt: OptSchema = {
     required: true,
     filter: (arg: string) => {
       const n = Number(arg);
-      if (!Number.isFinite(n)) {
-        throw new Error(`${arg} is not a valid number`);
+      if (!Number.isInteger(n)) {
+        throw new Error(`"${arg}" is not a valid integer`);
+      } else if (n < 1) {
+        throw new Error('must be greater than 0');
       }
       return n;
     },

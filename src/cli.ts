@@ -127,11 +127,13 @@ const { opts, cmds, args } = getopts(
     up: async () => {
       const num = opts.get(numOpt.name) as number;
       const { migrations, err } = await migr8.up({ num });
-      const padding = findMaxStrLength(migrations.map(({ batch }) => batch));
+      const batchPadding = findMaxStrLength(
+        migrations.map(({ batch }) => batch),
+      );
 
       for (const { name, batch } of migrations) {
         const status = `Migrated  Batch ${String(batch).padStart(
-          padding,
+          batchPadding,
           '0',
         )}`;
         logger.inform(`${status}  ${name}`);
@@ -148,11 +150,13 @@ const { opts, cmds, args } = getopts(
     down: async (n?: number) => {
       const num = n || (opts.get(numOpt.name) as number);
       const { migrations, err } = await migr8.down({ num });
-      const padding = findMaxStrLength(migrations.map(({ batch }) => batch));
+      const batchPadding = findMaxStrLength(
+        migrations.map(({ batch }) => batch),
+      );
 
       for (const { name, batch } of migrations) {
         const status = `Rolled back  Batch ${String(batch).padStart(
-          padding,
+          batchPadding,
           '0',
         )}`;
         logger.inform(`${status}  ${name}`);
@@ -167,22 +171,25 @@ const { opts, cmds, args } = getopts(
     },
     list: async () => {
       const executedMigrations = await migr8.registry.getExecutedMigrations();
-      const padding = findMaxStrLength(
+      const batchPadding = findMaxStrLength(
         executedMigrations.map(({ batch }) => batch),
       );
 
+      const hasExecutedMigrations = Boolean(executedMigrations.length);
       for (const migration of await migr8.getMigrations()) {
         const executed = executedMigrations.find(
           ({ name }) => migration === name,
         );
 
+        const executedStatus = `Migrated  Batch ${String(
+          executed ? executed.batch : '',
+        ).padStart(batchPadding, '0')}`;
+
         let status = '';
         if (executed) {
-          String(executed.batch).padStart(padding, '0');
-          status = `Migrated  Batch ${String(executed.batch).padStart(
-            padding,
-            '0',
-          )}`;
+          status = executedStatus;
+        } else if (hasExecutedMigrations) {
+          status = 'Pending'.padEnd(executedStatus.length, ' ');
         } else {
           status = 'Pending';
         }

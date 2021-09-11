@@ -3,6 +3,9 @@
 # Fail immediately on error 
 set -e
 
+# Change working directory (https://stackoverflow.com/a/4774063)
+cd $(dirname $0)
+
 echo "1. run npm install"
 npm install
 

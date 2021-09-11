@@ -136,7 +136,7 @@ export class Migr8 {
     const arg = await this.upArg();
     const processedMigrations = [];
     const limit = ((num || 0) > 0 ? num : Infinity) as number;
-    let err = null;
+    let err: Error | null = null;
     let count = 0;
     try {
       for (const name of await this.getPendingMigrations()) {
@@ -164,7 +164,7 @@ export class Migr8 {
         });
       }
     } catch (e) {
-      err = e;
+      err = e instanceof Error ? e : new Error(String(e));
     }
 
     return { migrations: processedMigrations, err };
@@ -187,7 +187,7 @@ export class Migr8 {
 
     const arg = await this.downArg();
     const processedMigrations = [];
-    let err = null;
+    let err: Error | null = null;
     let count = 0;
     try {
       // Note: The `slice` is intentional since `reverse()` would operate on the
@@ -216,7 +216,7 @@ export class Migr8 {
         processedMigrations.push(migration);
       }
     } catch (e) {
-      err = e;
+      err = e instanceof Error ? e : new Error(String(e));
     }
 
     return { migrations: processedMigrations, err };

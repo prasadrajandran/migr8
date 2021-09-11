@@ -1,5 +1,5 @@
 node_modules/
-d/
+dist/
 tests/
 .eslintrc.js
 webpack.config.js

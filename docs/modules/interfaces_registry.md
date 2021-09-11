@@ -1,4 +1,4 @@
-[migr8 - v1.0.0-beta.1](../README.md) / interfaces/registry
+[migr8 - v1.0.0](../README.md) / interfaces/registry
 
 # Module: interfaces/registry
 

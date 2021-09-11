@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Fail immediately on error 
+set -e
+
+# Change working directory (https://stackoverflow.com/a/4774063)
+cd $(dirname $0)
+
 echo "1. run npm install"
 npm install
 
@@ -40,7 +46,7 @@ package_version=${package_version/,/} # remove `,`
 echo
 echo "--- BUILD COMPLETE ---"
 echo
-echo "1. update the package version (currently: \"$package_version\") if necessary"
+echo "1. update the package version (currently: $package_version) if necessary"
 echo "2. run \"npm install\" if the package version is updated to update the version in the lockfile"
 echo "3. create PR to master (from development), merge PR, and create a GitHub release"
 echo "4. switch to the master branch locally and run \"git pull\""

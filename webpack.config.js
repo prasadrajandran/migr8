@@ -44,6 +44,6 @@ module.exports = {
   output: {
     clean: true,
     filename: 'cli.js',
-    path: path.resolve(__dirname, 'd'),
+    path: path.resolve(__dirname, 'dist'),
   },
 };

@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import { existsSync } from 'fs';
-import { getopts, OptSchema } from '@prasadrajandran/getopts';
+import { getopts } from '@prasadrajandran/getopts';
+import { OptSchema } from '@prasadrajandran/getopts/dist/interfaces/schema';
 import { Migr8 } from './migr8';
 import * as logger from './cli/helpers/logger';
 import { Migr8Config } from './interfaces/migr8_config';
@@ -19,79 +20,94 @@ import {
 
 const DEFAULT_CONFIG_FILENAME = resolve(__dirname, './migr8.config.js');
 
-const nOpt: OptSchema = {
-  name: '-n',
-  longName: '--num',
-  arg: 'required',
-  argFilter: (arg: string) => {
-    const n = Number(arg);
-    if (!Number.isFinite(n)) {
-      throw new Error(`${arg} is not a valid number`);
-    }
-    return n;
+const CMDS = {
+  CREATE: 'create',
+  UP: 'up',
+  DOWN: 'down',
+  LIST: 'list',
+  CLEAR: 'clear',
+  RESET: 'reset',
+} as const;
+
+type CMD = typeof CMDS[keyof typeof CMDS];
+
+const CMD_MANS = {
+  create: createMan,
+  up: upMan,
+  down: downMan,
+  list: listMan,
+  clear: clearMan,
+  reset: resetMan,
+} as const;
+
+const numOpt: OptSchema = {
+  name: ['-n', '--num'],
+  arg: {
+    required: true,
+    filter: (arg: string) => {
+      const n = Number(arg);
+      if (!Number.isInteger(n)) {
+        throw new Error(`"${arg}" is not a valid integer`);
+      } else if (n < 1) {
+        throw new Error('must be greater than 0');
+      }
+      return n;
+    },
   },
 };
 
-const { opts, cmds, args, errors } = getopts({
-  opts: [
-    { longName: '--help' },
-    { longName: '--version' },
-    {
-      longName: '--config',
-      arg: 'required',
-      argFilter: (arg) => {
-        const filename = resolve(arg);
-        if (existsSync(filename)) {
-          return require(/* webpackIgnore: true */ filename);
-        } else {
-          throw new Error(`${filename} does not exist`);
-        }
+const { opts, cmds, args } = getopts(
+  {
+    opts: [
+      { name: '--help' },
+      { name: '--version' },
+      {
+        name: '--config',
+        arg: {
+          required: true,
+          filter: (arg) => {
+            const filename = resolve(arg);
+            if (existsSync(filename)) {
+              return require(/* webpackIgnore: true */ filename);
+            } else {
+              throw new Error(`${filename} does not exist`);
+            }
+          },
+        },
+      },
+    ],
+    cmds: [
+      { name: CMDS.CREATE, args: { min: 1 } },
+      { name: CMDS.UP, opts: [numOpt], args: { max: 0 } },
+      { name: CMDS.DOWN, opts: [numOpt], args: { max: 0 } },
+      { name: CMDS.LIST, args: { max: 0 } },
+      { name: CMDS.CLEAR, args: { max: 0 } },
+      { name: CMDS.RESET, args: { max: 0 } },
+    ],
+  },
+  {
+    hooks: {
+      helpOpt: {
+        callback: ({ cmds }) => {
+          const cmd = cmds[0] as CMD | undefined;
+          logger.inform(cmd ? CMD_MANS[cmd] : man);
+        },
+      },
+      versionOpt: {
+        callback: () => {
+          logger.inform(`${packageName}: ${packageVersion}`);
+        },
+      },
+      parserErrors: {
+        callback: ({ errors }) => {
+          for (const { message } of errors) {
+            logger.scream(`${packageName}: ${message}`);
+          }
+        },
       },
     },
-  ],
-  cmds: [
-    { name: 'create', minArgs: 1 },
-    { name: 'up', opts: [nOpt] },
-    { name: 'down', opts: [nOpt] },
-    { name: 'list' },
-    { name: 'clear' },
-    { name: 'reset' },
-  ],
-});
-
-if (opts.has('--help')) {
-  switch (cmds[0]) {
-    case 'create':
-      logger.inform(createMan);
-      break;
-    case 'up':
-      logger.inform(upMan);
-      break;
-    case 'down':
-      logger.inform(downMan);
-      break;
-    case 'list':
-      logger.inform(listMan);
-      break;
-    case 'clear':
-      logger.inform(clearMan);
-      break;
-    case 'reset':
-      logger.inform(resetMan);
-      break;
-    default:
-      logger.inform(man);
-  }
-  process.exit(0);
-} else if (opts.has('--version')) {
-  logger.inform(`${packageName}: ${packageVersion}`);
-  process.exit(0);
-} else if (errors.length) {
-  for (const { name, message } of errors) {
-    logger.scream(`${packageName}: (${name}) ${message}`);
-  }
-  process.exit(1);
-}
+  },
+);
 
 (async () => {
   const config = ((): Migr8Config | undefined => {
@@ -111,14 +127,15 @@ if (opts.has('--help')) {
       return true;
     },
     up: async () => {
-      const num = (opts.get(nOpt.name as string) ||
-        opts.get(nOpt.longName as string)) as number;
+      const num = opts.get(numOpt.name) as number;
       const { migrations, err } = await migr8.up({ num });
-      const padding = findMaxStrLength(migrations.map(({ batch }) => batch));
+      const batchPadding = findMaxStrLength(
+        migrations.map(({ batch }) => batch),
+      );
 
       for (const { name, batch } of migrations) {
         const status = `Migrated  Batch ${String(batch).padStart(
-          padding,
+          batchPadding,
           '0',
         )}`;
         logger.inform(`${status}  ${name}`);
@@ -133,15 +150,15 @@ if (opts.has('--help')) {
       return true;
     },
     down: async (n?: number) => {
-      const num = (n ||
-        opts.get(nOpt.name as string) ||
-        opts.get(nOpt.longName as string)) as number;
+      const num = n || (opts.get(numOpt.name) as number);
       const { migrations, err } = await migr8.down({ num });
-      const padding = findMaxStrLength(migrations.map(({ batch }) => batch));
+      const batchPadding = findMaxStrLength(
+        migrations.map(({ batch }) => batch),
+      );
 
       for (const { name, batch } of migrations) {
         const status = `Rolled back  Batch ${String(batch).padStart(
-          padding,
+          batchPadding,
           '0',
         )}`;
         logger.inform(`${status}  ${name}`);
@@ -156,22 +173,25 @@ if (opts.has('--help')) {
     },
     list: async () => {
       const executedMigrations = await migr8.registry.getExecutedMigrations();
-      const padding = findMaxStrLength(
+      const batchPadding = findMaxStrLength(
         executedMigrations.map(({ batch }) => batch),
       );
 
+      const hasExecutedMigrations = Boolean(executedMigrations.length);
       for (const migration of await migr8.getMigrations()) {
         const executed = executedMigrations.find(
           ({ name }) => migration === name,
         );
 
+        const executedStatus = `Migrated  Batch ${String(
+          executed ? executed.batch : '',
+        ).padStart(batchPadding, '0')}`;
+
         let status = '';
         if (executed) {
-          String(executed.batch).padStart(padding, '0');
-          status = `Migrated  Batch ${String(executed.batch).padStart(
-            padding,
-            '0',
-          )}`;
+          status = executedStatus;
+        } else if (hasExecutedMigrations) {
+          status = 'Pending'.padEnd(executedStatus.length, ' ');
         } else {
           status = 'Pending';
         }
@@ -194,7 +214,7 @@ if (opts.has('--help')) {
     },
   };
 
-  const cmd = cmds[0] as 'create' | 'up' | 'down' | 'list' | 'clear' | 'reset';
+  const cmd = cmds[0] as CMD;
 
   try {
     const result = await cli[cmd]();

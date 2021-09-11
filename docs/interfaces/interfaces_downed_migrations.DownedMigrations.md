@@ -1,4 +1,4 @@
-[migr8 - v1.0.0-beta.1](../README.md) / [interfaces/downed_migrations](../modules/interfaces_downed_migrations.md) / DownedMigrations
+[migr8 - v1.0.0](../README.md) / [interfaces/downed_migrations](../modules/interfaces_downed_migrations.md) / DownedMigrations
 
 # Interface: DownedMigrations
 
@@ -21,7 +21,7 @@ Reference to the Error if an error occured.
 
 #### Defined in
 
-[interfaces/downed_migrations.ts:12](https://github.com/prasadrajandran/migr8/blob/560fe49/src/interfaces/downed_migrations.ts#L12)
+[interfaces/downed_migrations.ts:12](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/downed_migrations.ts#L12)
 
 ---
 
@@ -33,4 +33,4 @@ Migrations that were rolled back.
 
 #### Defined in
 
-[interfaces/downed_migrations.ts:7](https://github.com/prasadrajandran/migr8/blob/560fe49/src/interfaces/downed_migrations.ts#L7)
+[interfaces/downed_migrations.ts:7](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/downed_migrations.ts#L7)

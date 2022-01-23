@@ -1,8 +1,12 @@
 {
   "name": "migr8",
   "out": "docs",
+  "cleanOutputDir": true,
   "includeVersion": true,
+  "plugin": "typedoc-plugin-markdown",
   "readme": "none",
   "entryPoints": ["src/"],
-  "exclude": ["src/cli.ts", "src/cli/", "src/custom.d.ts"]
+  "entryPointStrategy": "expand",
+  "exclude": ["src/cli.ts", "src/cli/helpers/*.ts", "src/custom.d.ts"],
+  "githubPages": false
 }

@@ -1,4 +1,4 @@
-[migr8 - v1.0.0](../README.md) / [interfaces/registry_update](../modules/interfaces_registry_update.md) / RegistryUpdate
+[migr8 - v1.0.1](../README.md) / [interfaces/registry_update](../modules/interfaces_registry_update.md) / RegistryUpdate
 
 # Interface: RegistryUpdate
 
@@ -22,7 +22,7 @@ Operation that was performed.
 
 #### Defined in
 
-[interfaces/registry_update.ts:7](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/registry_update.ts#L7)
+[interfaces/registry_update.ts:7](https://github.com/prasadrajandran/migr8/blob/b5f0cc2/src/interfaces/registry_update.ts#L7)
 
 ---
 
@@ -34,7 +34,7 @@ Migration that was either executed or rolled back.
 
 #### Defined in
 
-[interfaces/registry_update.ts:17](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/registry_update.ts#L17)
+[interfaces/registry_update.ts:17](https://github.com/prasadrajandran/migr8/blob/b5f0cc2/src/interfaces/registry_update.ts#L17)
 
 ---
 
@@ -46,4 +46,4 @@ All executed migrations.
 
 #### Defined in
 
-[interfaces/registry_update.ts:12](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/registry_update.ts#L12)
+[interfaces/registry_update.ts:12](https://github.com/prasadrajandran/migr8/blob/b5f0cc2/src/interfaces/registry_update.ts#L12)

@@ -1,4 +1,4 @@
-[migr8 - v1.0.0](../README.md) / interfaces/upped_migrations
+[migr8 - v1.0.1](../README.md) / interfaces/upped_migrations
 
 # Module: interfaces/upped_migrations
 

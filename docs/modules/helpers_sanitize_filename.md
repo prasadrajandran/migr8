@@ -1,4 +1,4 @@
-[migr8 - v1.0.0](../README.md) / helpers/sanitize_filename
+[migr8 - v1.0.1](../README.md) / helpers/sanitize_filename
 
 # Module: helpers/sanitize_filename
 
@@ -17,21 +17,21 @@
 
 ### RESERVED_CHARACTERS
 
-• `Const` **RESERVED_CHARACTERS**: `string`[]
+• **RESERVED_CHARACTERS**: `string`[]
 
 #### Defined in
 
-[helpers/sanitize_filename.ts:1](https://github.com/prasadrajandran/migr8/blob/5654936/src/helpers/sanitize_filename.ts#L1)
+[helpers/sanitize_filename.ts:1](https://github.com/prasadrajandran/migr8/blob/b5f0cc2/src/helpers/sanitize_filename.ts#L1)
 
 ---
 
 ### RESERVED_WINDOWS_FILENAMES
 
-• `Const` **RESERVED_WINDOWS_FILENAMES**: `string`[]
+• **RESERVED_WINDOWS_FILENAMES**: `string`[]
 
 #### Defined in
 
-[helpers/sanitize_filename.ts:12](https://github.com/prasadrajandran/migr8/blob/5654936/src/helpers/sanitize_filename.ts#L12)
+[helpers/sanitize_filename.ts:12](https://github.com/prasadrajandran/migr8/blob/b5f0cc2/src/helpers/sanitize_filename.ts#L12)
 
 ## Functions
 
@@ -56,4 +56,4 @@ Sanitized filename
 
 #### Defined in
 
-[helpers/sanitize_filename.ts:58](https://github.com/prasadrajandran/migr8/blob/5654936/src/helpers/sanitize_filename.ts#L58)
+[helpers/sanitize_filename.ts:58](https://github.com/prasadrajandran/migr8/blob/b5f0cc2/src/helpers/sanitize_filename.ts#L58)

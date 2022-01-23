@@ -1,4 +1,4 @@
-[migr8 - v1.0.0](../README.md) / [interfaces/upped_migrations](../modules/interfaces_upped_migrations.md) / UppedMigrations
+[migr8 - v1.0.1](../README.md) / [interfaces/upped_migrations](../modules/interfaces_upped_migrations.md) / UppedMigrations
 
 # Interface: UppedMigrations
 
@@ -21,7 +21,7 @@ Reference to the Error if an error occured.
 
 #### Defined in
 
-[interfaces/upped_migrations.ts:12](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/upped_migrations.ts#L12)
+[interfaces/upped_migrations.ts:12](https://github.com/prasadrajandran/migr8/blob/b5f0cc2/src/interfaces/upped_migrations.ts#L12)
 
 ---
 
@@ -33,4 +33,4 @@ Migrations that were migrated.
 
 #### Defined in
 
-[interfaces/upped_migrations.ts:7](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/upped_migrations.ts#L7)
+[interfaces/upped_migrations.ts:7](https://github.com/prasadrajandran/migr8/blob/b5f0cc2/src/interfaces/upped_migrations.ts#L7)

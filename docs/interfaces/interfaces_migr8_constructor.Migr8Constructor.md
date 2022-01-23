@@ -1,4 +1,4 @@
-[migr8 - v1.0.0](../README.md) / [interfaces/migr8_constructor](../modules/interfaces_migr8_constructor.md) / Migr8Constructor
+[migr8 - v1.0.1](../README.md) / [interfaces/migr8_constructor](../modules/interfaces_migr8_constructor.md) / Migr8Constructor
 
 # Interface: Migr8Constructor
 
@@ -25,7 +25,7 @@ rolled back.
 
 #### Defined in
 
-[interfaces/migr8_constructor.ts:32](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/migr8_constructor.ts#L32)
+[interfaces/migr8_constructor.ts:32](https://github.com/prasadrajandran/migr8/blob/b5f0cc2/src/interfaces/migr8_constructor.ts#L32)
 
 ---
 
@@ -37,7 +37,7 @@ Directory that contains the migration files.
 
 #### Defined in
 
-[interfaces/migr8_constructor.ts:9](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/migr8_constructor.ts#L9)
+[interfaces/migr8_constructor.ts:9](https://github.com/prasadrajandran/migr8/blob/b5f0cc2/src/interfaces/migr8_constructor.ts#L9)
 
 ---
 
@@ -50,7 +50,7 @@ migrations.
 
 #### Defined in
 
-[interfaces/migr8_constructor.ts:20](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/migr8_constructor.ts#L20)
+[interfaces/migr8_constructor.ts:20](https://github.com/prasadrajandran/migr8/blob/b5f0cc2/src/interfaces/migr8_constructor.ts#L20)
 
 ---
 
@@ -62,7 +62,7 @@ Filename of the template that will be used for new migrations.
 
 #### Defined in
 
-[interfaces/migr8_constructor.ts:14](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/migr8_constructor.ts#L14)
+[interfaces/migr8_constructor.ts:14](https://github.com/prasadrajandran/migr8/blob/b5f0cc2/src/interfaces/migr8_constructor.ts#L14)
 
 ---
 
@@ -75,4 +75,4 @@ migrated.
 
 #### Defined in
 
-[interfaces/migr8_constructor.ts:26](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/migr8_constructor.ts#L26)
+[interfaces/migr8_constructor.ts:26](https://github.com/prasadrajandran/migr8/blob/b5f0cc2/src/interfaces/migr8_constructor.ts#L26)

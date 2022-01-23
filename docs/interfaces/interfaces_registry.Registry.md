@@ -1,4 +1,4 @@
-[migr8 - v1.0.0](../README.md) / [interfaces/registry](../modules/interfaces_registry.md) / Registry
+[migr8 - v1.0.1](../README.md) / [interfaces/registry](../modules/interfaces_registry.md) / Registry
 
 # Interface: Registry
 
@@ -29,7 +29,7 @@ Get migrations that have been migrated.
 
 #### Defined in
 
-[interfaces/registry.ts:8](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/registry.ts#L8)
+[interfaces/registry.ts:8](https://github.com/prasadrajandran/migr8/blob/b5f0cc2/src/interfaces/registry.ts#L8)
 
 ---
 
@@ -53,4 +53,4 @@ This is how we keep track of what has been and has not been migrated.
 
 #### Defined in
 
-[interfaces/registry.ts:17](https://github.com/prasadrajandran/migr8/blob/5654936/src/interfaces/registry.ts#L17)
+[interfaces/registry.ts:17](https://github.com/prasadrajandran/migr8/blob/b5f0cc2/src/interfaces/registry.ts#L17)

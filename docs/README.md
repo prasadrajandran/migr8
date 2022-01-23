@@ -1,4 +1,4 @@
-# migr8 - v1.0.0
+# migr8 - v1.0.1
 
 ## Table of contents
 

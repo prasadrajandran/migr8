@@ -1,4 +1,4 @@
-[migr8 - v1.0.0](../README.md) / interfaces/file_system_registry_constructor
+[migr8 - v1.0.1](../README.md) / interfaces/file_system_registry_constructor
 
 # Module: interfaces/file_system_registry_constructor
 
